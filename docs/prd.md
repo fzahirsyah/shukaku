@@ -620,3 +620,7 @@ The product is releasable when a first-time mobile user can open the static HTTP
 ## User-requested design refinement — 2026-10-24
 
 Schedule for **P5 mobile visual polish**: add a restrained Japanese floral branch/twig motif, preferably sakura blossoms, with jasmine as an alternative. Place it in spare space on Home or Zen entry, clear of the board, clues and actions. Use CSS geometry or a tiny optimized SVG (illustration budget under 3 KB); no large image or animation dependency. Check light/dark contrast, 320 px layout and reduced motion. This is decorative and does not affect gameplay. P1 remains focused on core play.
+
+### Implementation note — 2026-10-24, P6
+
+At the user's request, P6 desktop code was implemented after P4. The sakura branch now appears on tablet/desktop Home and Zen entry during this design pass; phone floral polish remains with P5. P5 offline/mobile release implementation, P4 generator acceptance and P6 runtime/visual acceptance remain pending. See `phase-6.md` for the implementation record.

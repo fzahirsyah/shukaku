@@ -2,7 +2,7 @@ import { contains, rectangleFromCorners, validateRectangle } from '../engine/val
 const colors = ['mint','sky','lilac','peach','rose'];
 export default {
   props: { puzzle: Object, rectangles: {type:Array,default:()=>[]}, locked:Boolean, replacing:String, selected:String, zoom:{type:Number,default:1}, panMode:Boolean, selectionStyle:String, highlightedClue:String, hintError:Boolean },
-  emits:['place','select','remove','cancel','status'],
+  emits:['shortcut','place','select','remove','cancel','status'],
   data() { return {anchor:null, endpoint:null, pointer:null, focused:0, suppressClick:false}; },
   computed: {
     preview() { return this.anchor && this.endpoint ? rectangleFromCorners(this.anchor,this.endpoint) : null; },
@@ -23,8 +23,8 @@ export default {
     regionStyle(rect) { const index=this.puzzle.clues.findIndex(c=>c.id===rect.clueId);return {...this.position(rect),background:`var(--${colors[index%colors.length]})`}; },
     clueAt(row,col) {return this.puzzle.clues.find(c=>c.row===row&&c.col===col);},
     cellLabel(row,col) {const clue=this.clueAt(row,col),region=this.rectangles.find(r=>contains(r,row,col));return `Row ${row+1}, column ${col+1}${clue?', clue '+clue.value:', empty'}${region?', placed rectangle':''}${clue?.id===this.highlightedClue?', hint highlighted':''}`;},
-    focusClue(id){const clue=this.puzzle.clues.find(c=>c.id===id);if(clue)this.focusCell(clue.row*this.puzzle.cols+clue.col);},
-    focusCell(index) {this.focused=Math.max(0,Math.min(this.puzzle.rows*this.puzzle.cols-1,index));this.$nextTick(()=>{const cell=this.$el.querySelector(`[data-cell="${this.focused}"]`);if(!cell)return;cell.focus({preventScroll:true});const bounds=cell.getBoundingClientRect(),view=this.$refs.viewport.getBoundingClientRect();if(bounds.left<view.left)this.$refs.viewport.scrollLeft-=view.left-bounds.left;else if(bounds.right>view.right)this.$refs.viewport.scrollLeft+=bounds.right-view.right;if(bounds.top<view.top)this.$refs.viewport.scrollTop-=view.top-bounds.top;else if(bounds.bottom>view.bottom)this.$refs.viewport.scrollTop+=bounds.bottom-view.bottom;});},
+    focusClue(id){const clue=this.puzzle.clues.find(c=>c.id===id);if(clue)this.focusCell(clue.row*this.puzzle.cols+clue.col,{page:true});},
+    focusCell(index,{page=false}={}) {this.focused=Math.max(0,Math.min(this.puzzle.rows*this.puzzle.cols-1,index));this.$nextTick(()=>{const cell=this.$el.querySelector(`[data-cell="${this.focused}"]`);if(!cell)return;cell.focus({preventScroll:true});const bounds=cell.getBoundingClientRect(),view=this.$refs.viewport.getBoundingClientRect();if(bounds.left<view.left)this.$refs.viewport.scrollLeft-=view.left-bounds.left;else if(bounds.right>view.right)this.$refs.viewport.scrollLeft+=bounds.right-view.right;if(bounds.top<view.top)this.$refs.viewport.scrollTop-=view.top-bounds.top;else if(bounds.bottom>view.bottom)this.$refs.viewport.scrollTop+=bounds.bottom-view.bottom;if(page)cell.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});});},
     cellAt(event) {const bounds=this.$refs.board.getBoundingClientRect();const col=Math.floor((event.clientX-bounds.left)/bounds.width*this.puzzle.cols),row=Math.floor((event.clientY-bounds.top)/bounds.height*this.puzzle.rows);return row>=0&&col>=0&&row<this.puzzle.rows&&col<this.puzzle.cols?{row,col}:null;},
     clearPointer() {const current=this.pointer;this.pointer=null;if(current&&this.$refs.board?.hasPointerCapture(current.id))this.$refs.board.releasePointerCapture(current.id);},
     clearGesture() {this.clearPointer();this.anchor=null;this.endpoint=null;},
@@ -63,10 +63,21 @@ export default {
     },
     finish(rectangle) {this.anchor=null;this.endpoint=null;this.$emit('place',rectangle);},
     key(event) {
-      if(this.locked)return;
+      if(this.locked||event.defaultPrevented||event.isComposing||event.altKey)return;
+      const modifier=event.ctrlKey||event.metaKey,lower=event.key.toLowerCase();
+      const history=modifier&&(lower==='z'||event.ctrlKey&&!event.metaKey&&lower==='y');
+      if(history){event.preventDefault();if(!event.repeat){this.clearGesture();this.$emit('shortcut',lower==='y'||event.shiftKey?'redo':'undo');}return;}
+      if(modifier&&!['Home','End'].includes(event.key))return;
+      if(!modifier&&['+','=','-','−','0','p'].includes(lower)){
+        event.preventDefault();if(!event.repeat)this.$emit('shortcut',lower==='0'?'fit':lower==='p'?'pause':['+','='].includes(lower)?'zoom-in':'zoom-out');return;
+      }
       const row=Math.floor(this.focused/this.puzzle.cols),col=this.focused%this.puzzle.cols;
       const keys={ArrowLeft:[row,Math.max(0,col-1)],ArrowRight:[row,Math.min(this.puzzle.cols-1,col+1)],ArrowUp:[Math.max(0,row-1),col],ArrowDown:[Math.min(this.puzzle.rows-1,row+1),col]};
-      if(keys[event.key]){event.preventDefault();const [r,c]=keys[event.key];this.focusCell(r*this.puzzle.cols+c);if(this.anchor)this.endpoint={row:r,col:c};return;}
+      if(['Home','End'].includes(event.key)){
+        event.preventDefault();const index=event.key==='Home'?(modifier?0:row*this.puzzle.cols):(modifier?this.puzzle.rows*this.puzzle.cols-1:(row+1)*this.puzzle.cols-1);
+        this.focusCell(index,{page:true});if(this.anchor)this.endpoint={row:Math.floor(index/this.puzzle.cols),col:index%this.puzzle.cols};return;
+      }
+      if(keys[event.key]){event.preventDefault();const [r,c]=keys[event.key];this.focusCell(r*this.puzzle.cols+c,{page:true});if(this.anchor)this.endpoint={row:r,col:c};return;}
       if(['Enter',' '].includes(event.key)){event.preventDefault();if(!event.repeat)this.activate({row,col});}
       if(event.key==='Escape'){event.preventDefault();this.clearGesture();this.$emit('cancel');this.$emit('status','Selection cancelled.');}
       if(['Delete','Backspace'].includes(event.key)){event.preventDefault();const region=this.rectangles.find(r=>contains(r,row,col));if(region)this.$emit('remove',region.clueId);}

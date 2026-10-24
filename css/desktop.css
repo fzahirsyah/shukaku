@@ -1,0 +1,71 @@
+/* Phone layout remains the base; these wrappers have no phone layout effects. */
+.desktop-context, .floral-branch { display: none; }
+.game-play-area, .game-tools { min-width: 0; }
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 50; padding: 12px 18px; border-radius: 10px; background: var(--ink); color: var(--canvas); transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+.keyboard-guide { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; }
+.keyboard-guide summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 600; }
+.keyboard-guide summary:focus-visible { outline: 3px solid var(--selected-stroke); outline-offset: 3px; border-radius: 4px; }
+.keyboard-guide p { margin: 8px 0; }
+.keyboard-guide dl { margin: 12px 0; }
+.keyboard-guide dl > div { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.keyboard-guide dt { margin-bottom: 6px; color: var(--muted); }
+.keyboard-guide dd { margin: 0; line-height: 1.9; }
+kbd { display: inline-block; font: inherit; font-size: 12px; padding: 1px 5px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--soft); white-space: nowrap; }
+
+@media (min-width: 768px) {
+  .app-shell { max-width: 900px; padding: max(16px, env(safe-area-inset-top)) 32px max(40px, env(safe-area-inset-bottom)); }
+  .app-shell.wide-game { max-width: 1120px; }
+  .screen:not(.game-screen) { max-width: 640px; margin-inline: auto; }
+  .screen.home-screen { max-width: 760px; }
+  .screen.zen-screen { max-width: 520px; }
+  .screen.how-to-play-screen { max-width: 560px; }
+  .screen.settings-screen { max-width: 800px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .settings-screen .page-header { grid-column: 1 / -1; margin-bottom: 0; }
+  .settings-screen .setting-group { margin-bottom: 0; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+  .page-header { min-height: 76px; margin-bottom: 28px; }
+  .page-header h1 { font-size: 18px; }
+  .home-brand { position: relative; padding: 42px 0; }
+  .home-brand h1 { font-size: 44px; letter-spacing: 5px; }
+  .home-brand p { font-size: 16px; }
+  .home-screen .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .home-screen .mode-card { min-height: 170px; padding: 28px; }
+  .home-screen .continue-card { max-width: 440px; margin-inline: auto; }
+  .home-links { margin-top: 32px; gap: 24px; }
+  .home-foot { margin-top: 44px; }
+  .floral-branch { display: block; position: absolute; width: 170px; height: auto; opacity: .8; pointer-events: none; user-select: none; }
+  .home-brand .floral-branch { right: 0; top: 22px; }
+  .zen-intro { position: relative; padding-top: 24px; }
+  .zen-intro .floral-branch { right: 0; top: 0; width: 116px; }
+  :root[data-theme="dark"] .floral-branch { filter: brightness(1.35); opacity: .75; }
+  .tabs { overflow-x: visible; flex-wrap: wrap; }
+  .level-grid { gap: 18px; }
+  .level-tile { min-height: 112px; }
+  .game-layout { display: grid; grid-template-columns: minmax(0, 1fr) 216px; gap: 28px; align-items: start; }
+  .game-play-area { width: 100%; max-width: min(640px, max(320px, calc(100dvh - 280px))); justify-self: center; }
+  .game-play-area > .notice { margin-bottom: 18px; }
+  .game-screen .board-viewport { max-height: min(646px, max(326px, calc(100dvh - 274px))); }
+  .how-to-play-screen .board-viewport { max-height: 70vh; max-height: 70dvh; }
+  .playable-board .board-cell { font-size: clamp(16px, calc(280px / var(--size)), 26px); }
+  .desktop-context { display: block; }
+  .desktop-context > .eyebrow { color: var(--muted); line-height: 1.8; }
+  .desktop-context h2 { margin: 10px 0; font-size: 21px; }
+  .desktop-context > p.muted { font-size: 14px; line-height: 1.7; }
+  .game-tools { padding: 18px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+  .game-tools .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 0; padding-top: 0; margin-top: 18px; }
+  .game-tools .tool { min-height: 70px; font-size: 12px; background: var(--soft); }
+  .game-tools .board-secondary-actions { margin-top: 12px; }
+  .game-tools .zoom-tools { margin-top: 12px; }
+  .game-tools .board-caption { line-height: 1.7; }
+  .game-tools .keyboard-guide { margin-top: 18px; }
+  .app-shell > .storage-notice { max-width: 760px; margin: 12px auto; }
+  .sheet-backdrop { align-items: center; padding: 32px; }
+  .sheet { width: min(100%, 480px); max-height: calc(100vh - 64px); max-height: calc(100dvh - 64px); border-radius: 24px; padding: 26px 28px; }
+  .sheet-handle { display: none; }
+}
+
+@media (min-width: 1024px) {
+  .app-shell.wide-game { padding-inline: 48px; }
+  .game-layout { grid-template-columns: minmax(0, 1fr) 264px; gap: 44px; }
+  .game-tools { padding: 24px; }
+}

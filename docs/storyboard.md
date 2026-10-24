@@ -909,3 +909,7 @@ A 320 px mobile user must be able to: open Home, enter Classic, select a level, 
 ## User-requested design refinement — 2026-10-24
 
 Schedule for **P5 mobile visual polish**: add a restrained Japanese floral branch/twig motif, preferably sakura blossoms, with jasmine as an alternative. Place it in spare space on Home or Zen entry, clear of the board, clues and actions. Use CSS geometry or a tiny optimized SVG (illustration budget under 3 KB); no large image or animation dependency. Check light/dark contrast, 320 px layout and reduced motion. This is decorative and does not affect gameplay. P1 remains focused on core play.
+
+### Implementation note — 2026-10-24, P6
+
+P6 now supplies tablet/desktop board-and-tools layouts, keyboard polish and a static sakura twig on wider Home/Zen entry screens. Phone layouts remain the base; phone floral polish and offline/mobile release work remain with P5. No P6 screenshot acceptance has been recorded. See `phase-6.md`.

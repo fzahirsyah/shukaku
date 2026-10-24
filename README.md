@@ -2,7 +2,11 @@
 
 A quiet little puzzle. Mobile browser game built with Vue 3 and native browser APIs.
 
-## Current milestone: Phase 4 implementation
+## Current milestone: Phase 6 desktop implementation
+
+Phase 6 adds tablet/desktop board-and-tools layouts, wider Home and Settings screens, centered dialogs, board-scoped keyboard shortcuts, keyboard help and a small sakura branch on wider Home/Zen screens. Phone layouts remain the base. JavaScript syntax checks passed; runtime, visual and mobile regression acceptance remains pending.
+
+Phase 6 is the final phase in the plan. P5 offline support and mobile release work have not been implemented; P4’s independent generator acceptance gate also remains open. This is not a release-complete claim.
 
 Zen now requests seeded puzzles at 5×5, 6×6, 7×7, 10×10 or 12×12, with Gentle, Balanced and Challenging logical rating ranges. The worker accepts only proven unique puzzles that meet the chosen range. Generation has finite attempts, work, node and time budgets, cancellation and a clearly labeled ready-made fallback. Ratings are provisional pending human calibration; the P4 runtime acceptance gate has not yet been executed.
 
@@ -74,13 +78,13 @@ Zen URLs resolve to a stable session ID for later resumption. A separate Classic
 - `js/storage/`: native IndexedDB transactions, ownership, validation and backup contracts
 - `js/data/`: curated starter content, tutorial and Zen fallbacks
 - `js/app.js`: Vue screen and sheet templates
-- `css/`: tokens, mobile layouts and motion preferences
+- `css/`: tokens, mobile base, tablet/desktop adaptations and motion preferences
 - `vendor/`: pinned Vue runtime and license
 - `tests/`: browser checks with no installation requirement
 - `docs/`: PRD, storyboard, handoffs and QA evidence
 
-Pending P4 acceptance: runtime/regression checks and independent uniqueness checks for 100 distinct accepted puzzles per supported tier. No tests or browser QA were run for this implementation step. Next after acceptance: P5 offline/mobile release and floral visual polish → P6 desktop refinement.
+Pending: P4 runtime/regression and independent uniqueness acceptance; P5 offline/mobile release implementation; P6 runtime, tablet/desktop visual and mobile regression acceptance. No tests or browser QA were run for the P6 implementation step.
 
-The requested Japanese floral branch motif (sakura preferred, jasmine alternative) remains recorded for **P5**, away from the board and controls.
+The requested Japanese floral branch motif is implemented as a 1,375-byte local sakura SVG on tablet/desktop Home and Zen entry. It is static, decorative and separate from the board and controls. Phone floral polish remains part of the unfinished P5 work.
 
-See [PRD](docs/prd.md), [storyboard](docs/storyboard.md), [P0](docs/phase-0.md), [P1](docs/phase-1.md) and [P2](docs/phase-2.md) , [P3](docs/phase-3.md) and [P4](docs/phase-4.md).
+See [PRD](docs/prd.md), [storyboard](docs/storyboard.md), [P0](docs/phase-0.md), [P1](docs/phase-1.md) [P2](docs/phase-2.md), [P3](docs/phase-3.md), [P4](docs/phase-4.md) and [P6](docs/phase-6.md).
