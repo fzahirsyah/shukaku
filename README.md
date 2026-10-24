@@ -2,13 +2,12 @@
 
 A quiet little puzzle. Mobile browser game built with Vue 3 and native browser APIs.
 
-## Current milestone: Phase 6 desktop implementation
+## Current status: audit fixes verified
 
-Phase 6 adds tablet/desktop board-and-tools layouts, wider Home and Settings screens, centered dialogs, board-scoped keyboard shortcuts, keyboard help and a small sakura branch on wider Home/Zen screens. Phone layouts remain the base. JavaScript syntax checks passed; runtime, visual and mobile regression acceptance remains pending.
+The pending-work audit fixes are implemented: bounded chunked save verification, offline caching with safe updates, improved Zen generation availability and 44 px control targets. The sakura branch now appears on phone and wider Home/Zen screens. Headless checks passed: 79 harness tests, 21 browser groups, 5 bulk-history groups, 7 offline/update groups and a fresh 1,500-puzzle independent uniqueness sample.
 
-Phase 6 is the final phase in the plan. P5 offline support and mobile release work have not been implemented; P4’s independent generator acceptance gate also remains open. This is not a release-complete claim.
-
-Zen now requests seeded puzzles at 5×5, 6×6, 7×7, 10×10 or 12×12, with Gentle, Balanced and Challenging logical rating ranges. The worker accepts only proven unique puzzles that meet the chosen range. Generation has finite attempts, work, node and time budgets, cancellation and a clearly labeled ready-made fallback. Ratings are provisional pending human calibration; the P4 runtime acceptance gate has not yet been executed.
+The static handoff is `release/shikaku` or `release/shikaku-static.zip`. No site has been deployed. Physical-device and hosted HTTPS smoke checks remain. See [fix details](docs/audit-fixes.md).
+Zen now requests seeded puzzles at 5×5, 6×6, 7×7, 10×10 or 12×12, with Gentle, Balanced and Challenging logical rating ranges. The worker accepts only proven unique puzzles that meet the chosen range. Generation has finite attempts, work, node and time budgets, cancellation and a clearly labeled ready-made fallback. Ratings are provisional pending human calibration; the independent uniqueness gate passes for all advertised size/difficulty pairings.
 
 The game includes a Web Worker solver, Check Board, and Nudge/Explain/Reveal hints. Reveals are proved compatible with the current board, go through the normal move engine and remain undoable. Contradictions are explained without silently changing rectangles. Timeouts, cancellation and unavailable workers leave normal play intact.
 
@@ -22,7 +21,7 @@ Settings supports portable JSON export, validated import with a preview, merge o
 
 Upload the static application folder to an existing HTTPS host, or use an already available static server. There is **no install or build step**. Opening `index.html` through `file://` is not supported because native modules and browser storage require a suitable origin.
 
-Vue 3.5.22 is pinned and bundled locally. The game makes no external runtime requests. Service-worker caching and deployment remain scheduled for P5; This milestone does not claim offline revisit support or publish a site.
+Vue 3.5.22 is pinned and bundled locally. The game makes no external runtime requests. The service worker caches critical runtime assets after a successful online setup and supports offline repeat visits. Updates wait until old game tabs close; no site is published automatically.
 
 | URL suffix | Screen |
 | --- | --- |
@@ -41,7 +40,7 @@ Zen URLs resolve to a stable session ID for later resumption. A separate Classic
 ## Controls
 
 - Drag between corners, or tap the first corner and then the opposite corner.
-- Tap a placed rectangle for Change/Remove. Invalid replacements preserve the original.
+- Tap a placed rectangle for Change/Remove, or double-tap the same cell in a placed rectangle to remove it. Removal can be undone. Double-tap an empty cell to cancel a corner/selection. A clue of 1 still supports choosing the same corner twice to place its one-cell rectangle. Invalid replacements preserve the original.
 - Use arrows to move cell focus, Enter/Space to choose corners, Escape to cancel, and Delete/Backspace to remove. One board cell participates in Tab navigation at a time.
 - +/− zoom; explicit Draw/Pan changes gesture behavior. Fit/Reset restores the overview.
 - Game Options pauses Classic. Returning from the background and restoring after reload both require Resume.
@@ -70,6 +69,8 @@ Zen URLs resolve to a stable session ID for later resumption. A separate Classic
 ## Structure
 
 - `js/engine/`: validation, reversible commands, bounded exact-cover solver, forced-move hints, seeded generator and logical difficulty evaluation
+- `js/state/definition-verifier.js`: bounded, cancellable collection verification with pending-state recovery
+- `js/state/offline.js` and `service-worker.js`: cache readiness, offline play and safe update lifecycle
 - `js/workers/`: cooperative background solver/hint/check/generate/verification requests
 - `js/state/puzzle-service.js`: worker lifecycle, request cancellation, deadlines and stale-message rejection
 - `js/components/`: accessible board/input controller and shared icons
@@ -83,8 +84,22 @@ Zen URLs resolve to a stable session ID for later resumption. A separate Classic
 - `tests/`: browser checks with no installation requirement
 - `docs/`: PRD, storyboard, handoffs and QA evidence
 
-Pending: P4 runtime/regression and independent uniqueness acceptance; P5 offline/mobile release implementation; P6 runtime, tablet/desktop visual and mobile regression acceptance. No tests or browser QA were run for the P6 implementation step.
+P0–P6 implementation is present. Automated/headless acceptance is recorded in the fix report; physical-device checks, human difficulty calibration and hosted HTTPS release checks remain.
 
-The requested Japanese floral branch motif is implemented as a 1,375-byte local sakura SVG on tablet/desktop Home and Zen entry. It is static, decorative and separate from the board and controls. Phone floral polish remains part of the unfinished P5 work.
+The requested Japanese floral branch motif is implemented as a 1,375-byte local sakura SVG on phone and wider Home/Zen entry screens. It is static, decorative and separate from the board and controls.
 
-See [PRD](docs/prd.md), [storyboard](docs/storyboard.md), [P0](docs/phase-0.md), [P1](docs/phase-1.md) [P2](docs/phase-2.md), [P3](docs/phase-3.md), [P4](docs/phase-4.md) and [P6](docs/phase-6.md).
+See [PRD](docs/prd.md), [storyboard](docs/storyboard.md), [P0](docs/phase-0.md), [P1](docs/phase-1.md) [P2](docs/phase-2.md), [P3](docs/phase-3.md), [P4](docs/phase-4.md), [P5](docs/phase-5.md) and [P6](docs/phase-6.md).
+
+## Pending-work audit — 2026-10-24
+
+The audit independently verified 1,500 distinct generated puzzles (100 for every size/difficulty pairing), passed the existing 72-check harness and exercised headless responsive/keyboard/save flows. Offline reload failed, and large valid histories exposed a shared verification-budget bug. Generation availability and small control targets also need improvement. See [audit findings and evidence](docs/pending-audit.md). Earlier milestone QA notes describe their state at implementation time.
+
+Audit follow-up: the four findings above are addressed. See [verified fixes and static handoff](docs/audit-fixes.md); the earlier audit remains a record of the pre-fix behavior.
+
+### Double-tap controls — 2026-10-24
+
+Rapid taps on the same cell (within 320 ms and 24 CSS px) remove a placed rectangle through the ordinary undoable REMOVE command, or cancel an unfinished empty-cell selection. Rapid taps on different corners continue drawing normally. Single-cell clue placement, keyboard controls and locked/pan modes retain their existing behavior. JavaScript syntax was checked; no new runtime tests were run for this follow-up. The static package was refreshed and the cache version bumped.
+
+### App icon — 2026-10-24
+
+The supplied three-block logo is available as a scalable vector in `assets/app-icon.svg`, a rounded SVG/32 px browser favicon, an Apple 180 px home-screen icon, and 192/512 px app icons with a separate maskable variant. `manifest.webmanifest` provides optional install metadata; installation remains optional. All icon assets are included in offline caching and the refreshed static package.

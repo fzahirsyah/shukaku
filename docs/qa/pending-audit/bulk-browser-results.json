@@ -1,0 +1,33 @@
+{
+  "checks": [],
+  "failures": [
+    {
+      "name": "valid 300-puzzle backup imports on first attempt",
+      "error": "Valid backup rejected: Generated puzzle could not be verified. Retry with worker support and keep a recovery backup.\n\n0 !== 1\n"
+    },
+    {
+      "name": "valid 1000-puzzle local history restores without recovery errors",
+      "error": "Valid stored history is marked unverified: We couldn’t restore 904 saved item(s). Other puzzles are still available.Export recovery data\n\n1 !== 0\n"
+    }
+  ],
+  "screens": [
+    "390-bulk-import-rejected.png",
+    "390-bulk-restore-recovery.png"
+  ],
+  "errors": [],
+  "network": [],
+  "bulkImport": {
+    "dialogs": 0,
+    "error": [
+      "Generated puzzle could not be verified. Retry with worker support and keep a recovery backup."
+    ],
+    "storedSessions": 0
+  },
+  "bulkRestore": {
+    "notice": [
+      "We couldn’t restore 904 saved item(s). Other puzzles are still available.Export recovery data"
+    ],
+    "storedSessions": 1000,
+    "continueHref": "#/play/zen/bulk-599"
+  }
+}

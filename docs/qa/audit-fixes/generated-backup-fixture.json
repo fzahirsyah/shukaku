@@ -1,0 +1,294 @@
+{
+  "exportFormatVersion": 1,
+  "exportedAt": 1792808178208,
+  "puzzles": [
+    {
+      "id": "classic-beginner-001",
+      "contentVersion": 1,
+      "rows": 5,
+      "cols": 5,
+      "difficulty": "beginner",
+      "modeSource": "curated",
+      "uniqueVerified": true,
+      "clues": [
+        {
+          "id": "b1-0",
+          "row": 0,
+          "col": 1,
+          "value": 5
+        },
+        {
+          "id": "b1-1",
+          "row": 1,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "id": "b1-2",
+          "row": 2,
+          "col": 3,
+          "value": 6
+        },
+        {
+          "id": "b1-3",
+          "row": 4,
+          "col": 0,
+          "value": 2
+        },
+        {
+          "id": "b1-4",
+          "row": 3,
+          "col": 1,
+          "value": 4
+        },
+        {
+          "id": "b1-5",
+          "row": 4,
+          "col": 2,
+          "value": 4
+        }
+      ],
+      "solution": [
+        {
+          "clueId": "b1-0",
+          "row": 0,
+          "col": 0,
+          "height": 1,
+          "width": 5
+        },
+        {
+          "clueId": "b1-1",
+          "row": 1,
+          "col": 0,
+          "height": 2,
+          "width": 2
+        },
+        {
+          "clueId": "b1-2",
+          "row": 1,
+          "col": 2,
+          "height": 2,
+          "width": 3
+        },
+        {
+          "clueId": "b1-3",
+          "row": 3,
+          "col": 0,
+          "height": 2,
+          "width": 1
+        },
+        {
+          "clueId": "b1-4",
+          "row": 3,
+          "col": 1,
+          "height": 1,
+          "width": 4
+        },
+        {
+          "clueId": "b1-5",
+          "row": 4,
+          "col": 1,
+          "height": 1,
+          "width": 4
+        }
+      ]
+    },
+    {
+      "id": "zen-zen-1-5-gentle-55e29664-a5df-4b8f-bda5-211f6e886a93_7",
+      "contentVersion": 1,
+      "rows": 5,
+      "cols": 5,
+      "difficulty": "gentle",
+      "modeSource": "generated",
+      "seed": "55e29664-a5df-4b8f-bda5-211f6e886a93_7",
+      "generatorVersion": "zen-1",
+      "clues": [
+        {
+          "id": "z0",
+          "row": 0,
+          "col": 2,
+          "value": 5
+        },
+        {
+          "id": "z1",
+          "row": 2,
+          "col": 1,
+          "value": 8
+        },
+        {
+          "id": "z2",
+          "row": 2,
+          "col": 4,
+          "value": 2
+        },
+        {
+          "id": "z3",
+          "row": 3,
+          "col": 1,
+          "value": 2
+        },
+        {
+          "id": "z4",
+          "row": 3,
+          "col": 4,
+          "value": 3
+        },
+        {
+          "id": "z5",
+          "row": 4,
+          "col": 1,
+          "value": 5
+        }
+      ],
+      "uniqueVerified": true,
+      "logicScore": 10,
+      "logicMetrics": {
+        "logicScore": 10,
+        "initialCandidates": 9,
+        "initialForced": 3,
+        "deductionRounds": 1,
+        "soleCellDeductions": 3,
+        "logicalRegions": 6,
+        "unresolved": 0
+      },
+      "solution": [
+        {
+          "clueId": "z0",
+          "row": 0,
+          "col": 0,
+          "height": 1,
+          "width": 5
+        },
+        {
+          "clueId": "z1",
+          "row": 1,
+          "col": 0,
+          "height": 2,
+          "width": 4
+        },
+        {
+          "clueId": "z2",
+          "row": 1,
+          "col": 4,
+          "height": 2,
+          "width": 1
+        },
+        {
+          "clueId": "z3",
+          "row": 3,
+          "col": 0,
+          "height": 1,
+          "width": 2
+        },
+        {
+          "clueId": "z4",
+          "row": 3,
+          "col": 2,
+          "height": 1,
+          "width": 3
+        },
+        {
+          "clueId": "z5",
+          "row": 4,
+          "col": 0,
+          "height": 1,
+          "width": 5
+        }
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "id": "session-0e5cd154-3745-4ce1-aeba-7adf4dda2e52",
+      "puzzleId": "classic-beginner-001",
+      "contentVersion": 1,
+      "mode": "classic",
+      "separate": false,
+      "status": "PAUSED",
+      "rectangles": [
+        {
+          "clueId": "b1-0",
+          "row": 0,
+          "col": 0,
+          "height": 1,
+          "width": 5
+        }
+      ],
+      "undoStack": [
+        {
+          "type": "PLACE",
+          "before": [],
+          "after": [
+            {
+              "clueId": "b1-0",
+              "row": 0,
+              "col": 0,
+              "height": 1,
+              "width": 5
+            }
+          ]
+        }
+      ],
+      "redoStack": [],
+      "elapsedActiveMs": 428.09999999403954,
+      "hintsUsed": 0,
+      "startedAt": 1792808174950,
+      "updatedAt": 1792808177664,
+      "revision": 3,
+      "completionCount": 0,
+      "moveTokens": [
+        "move-f90988e2-a0dc-43f8-b2da-046bf8d9cfa5-1"
+      ]
+    },
+    {
+      "id": "session-f59e5258-cab5-4b90-9cc2-7e5050c97496",
+      "puzzleId": "zen-zen-1-5-gentle-55e29664-a5df-4b8f-bda5-211f6e886a93_7",
+      "contentVersion": 1,
+      "mode": "zen",
+      "separate": false,
+      "status": "PAUSED",
+      "rectangles": [
+        {
+          "clueId": "z0",
+          "row": 0,
+          "col": 0,
+          "height": 1,
+          "width": 5
+        }
+      ],
+      "undoStack": [
+        {
+          "type": "PLACE",
+          "before": [],
+          "after": [
+            {
+              "clueId": "z0",
+              "row": 0,
+              "col": 0,
+              "height": 1,
+              "width": 5
+            }
+          ]
+        }
+      ],
+      "redoStack": [],
+      "elapsedActiveMs": 0,
+      "hintsUsed": 0,
+      "startedAt": 1792808177733,
+      "updatedAt": 1792808178166,
+      "revision": 1,
+      "completionCount": 0,
+      "moveTokens": [
+        "move-93abcebf-a12c-4d7c-b39b-5ab64c05bfbe-4"
+      ]
+    }
+  ],
+  "results": [],
+  "settings": {
+    "theme": "dark",
+    "reducedMotion": true,
+    "sound": false,
+    "highContrast": false,
+    "selection": "both"
+  }
+}

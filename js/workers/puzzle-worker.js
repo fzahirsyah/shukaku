@@ -11,7 +11,7 @@ self.onmessage=event=>{
   const task={id:request.id,cancelled:false};current=task;
   const input=request.budget||{},bounded=(value,fallback,max)=>Number.isFinite(value)?Math.max(0,Math.min(max,value)):fallback;
   const generation=['generate','verify-generated'].includes(request.type);
-  const budget={now:()=>performance.now(),maxMs:bounded(input.maxMs,generation?2800:1600,generation?4000:3000),maxNodes:bounded(input.maxNodes,100000,200000),maxWork:bounded(input.maxWork,generation?4000000:1000000,generation?6000000:3000000),isCancelled:()=>task.cancelled};
+  const budget={now:()=>performance.now(),maxMs:bounded(input.maxMs,generation?2800:1600,generation?4000:3000),maxNodes:bounded(input.maxNodes,generation?200000:100000,200000),maxWork:bounded(input.maxWork,generation?6000000:1000000,generation?6000000:3000000),isCancelled:()=>task.cancelled};
   const iterator=request.type==='generate'?generateSteps(request.parameters,budget):request.type==='verify-generated'?verifyGeneratedSteps(request.puzzles,budget):request.type==='solve'?solveSteps(request.puzzle,request.rectangles||[],budget):analyzeSteps(request.puzzle,request.rectangles||[],{...budget,kind:request.type,strength:request.strength});
   function pump(){
     try{

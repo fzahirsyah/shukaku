@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "name": "critical app shell installs completely",
+      "detail": {
+        "type": "CACHE_STATUS",
+        "ready": true,
+        "version": "offline-audit-v1"
+      }
+    },
+    {
+      "name": "offline Classic reload, saved move and hints use cached worker modules",
+      "detail": true
+    },
+    {
+      "name": "offline generated Zen opens, saves and restores without a clock",
+      "detail": {
+        "id": "zen-zen-1-5-gentle-90429632-7e4e-43e1-84ab-28e75802c11e"
+      }
+    },
+    {
+      "name": "failed replacement install preserves the active release and old cache",
+      "detail": {
+        "outcome": "redundant",
+        "keys": [
+          "shikaku-shell-%2F-offline-audit-v1"
+        ]
+      }
+    },
+    {
+      "name": "successful replacement waits while any existing game tab remains open",
+      "detail": {
+        "version": "offline-audit-v3",
+        "keys": [
+          "shikaku-shell-%2F-offline-audit-v3"
+        ]
+      }
+    },
+    {
+      "name": "missing cached module shows a reconnect page and recovers online",
+      "detail": true
+    },
+    {
+      "name": "static subfolder works offline without deleting the root cache",
+      "detail": {
+        "keys": [
+          "shikaku-shell-%2F-offline-audit-v3",
+          "shikaku-shell-%2Fnested%2F-offline-audit-v3"
+        ]
+      }
+    }
+  ],
+  "failures": []
+}

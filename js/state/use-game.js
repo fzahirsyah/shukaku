@@ -3,6 +3,8 @@ import { classicLevels } from '../data/classic-levels.js';
 import { zenFallbackLevels } from '../data/zen-fallback-levels.js';
 import { boardFingerprint,zenSizes } from '../engine/generator.js';
 import { zenDifficulties } from '../engine/difficulty.js';
+import { verifyDefinitions } from './definition-verifier.js';
+import { OfflineSupport } from './offline.js';
 import { PuzzleService,CancelledError } from './puzzle-service.js';
 import { validateRectangle } from '../engine/validator.js';
 import { createSession,applyMove,setPaused } from '../engine/moves.js';
@@ -18,7 +20,10 @@ export default function useGame(){
   const theme=ref('system'),reducedMotion=ref(matchMedia('(prefers-reduced-motion: reduce)').matches),sound=ref(false),highContrast=ref(false),selection=ref('both');
   const systemDark=matchMedia('(prefers-color-scheme: dark)'),tierId=ref('beginner'),tier=computed(()=>tiers.find(t=>t.id===tierId.value));
   const zenDifficulty=ref('gentle'),zenPending=ref(false),zenNotice=ref(''),generationService=new PuzzleService({deadlineMs:5500}),verificationService=new PuzzleService({deadlineMs:6000});
-  let generationEpoch=0,preparedZen=null,refreshQueue=Promise.resolve();
+  let generationEpoch=0,preparedZen=null,refreshQueue=Promise.resolve(),verificationQueue=Promise.resolve(),activeVerification=null,verificationPaused=false,dataEpoch=0;
+  let pendingRecovery={sessions:[],results:[]};
+  const verificationProgress=ref(null),pendingPuzzles=ref([]),offlineState=ref({offline:!navigator.onLine,ready:false,update:false,error:''});
+  const offlineSupport=new OfflineSupport(state=>{offlineState.value=state;});
   const zenSize=ref(5),zoom=ref(1),panMode=ref(false),tutorialStep=ref(0),sheet=ref(null),toast=ref(''),sheetElement=ref(null),heading=ref(null);
   const puzzle=ref(tutorialPuzzle),session=ref(createSession(tutorialPuzzle)),selected=ref(null),replacing=ref(null),gameMessage=ref('Draw a rectangle around one number.');
   const sessions=ref([]),results=ref([]),corruptions=ref([]),clockMs=ref(0),importPreview=ref(null),importMode=ref('merge'),importError=ref(''),resetStep=ref(1),resetWord=ref('');
@@ -63,34 +68,49 @@ export default function useGame(){
     const mark={value};dirtySettings.set(key,mark);if(!repo||!available.value){fail(Error());return;}
     inflight++;saving.value=true;try{await repo.setting(key,value);if(dirtySettings.get(key)===mark)dirtySettings.delete(key);}catch(error){fail(error);}finally{inflight--;updateSaved();}
   }
-  function ingest(raw,{preferences=false,invalidPuzzles=[]}={}){
+  function ingest(raw,{preferences=false,invalidPuzzles=[],deferredPuzzles=[]}={}){
+    const deferredIds=new Set(deferredPuzzles.map(p=>p.id)),deferredSessions=new Set(raw.sessions.filter(s=>deferredIds.has(s.puzzleId)).map(s=>s.id));
+    pendingPuzzles.value=deferredPuzzles;pendingRecovery={sessions:raw.sessions.filter(s=>deferredIds.has(s.puzzleId)),results:raw.results.filter(r=>deferredSessions.has(r.sessionId))};
     const valid=[],bad=invalidPuzzles.map(item=>({record:item.puzzle,error:item.reason})),invalidIds=new Set(invalidPuzzles.map(item=>item.puzzle.id));
-    for(const record of raw.sessions){try{const definition=catalog.find(p=>p.id===record.puzzleId);if(!definition||invalidIds.has(record.puzzleId))throw Error('Missing or unverified puzzle definition.');valid.push(cleanSession(record,definition));}catch(error){bad.push({record,error:error.message});}}
-    const records=[];for(const result of raw.results){try{records.push(cleanResult(result,valid));}catch(error){bad.push({record:result,error:error.message});}}
+    for(const record of raw.sessions){if(deferredIds.has(record.puzzleId))continue;try{const definition=catalog.find(p=>p.id===record.puzzleId);if(!definition||invalidIds.has(record.puzzleId))throw Error('Missing or unverified puzzle definition.');valid.push(cleanSession(record,definition));}catch(error){bad.push({record,error:error.message});}}
+    const records=[];for(const result of raw.results){if(deferredSessions.has(result.sessionId))continue;try{records.push(cleanResult(result,valid));}catch(error){bad.push({record:result,error:error.message});}}
     for(const value of dirty.values()){const index=valid.findIndex(s=>s.id===value.id);if(index>=0)valid.splice(index,1);valid.push(clone(value));if(value.status==='COMPLETED'&&!records.some(r=>r.sessionId===value.id))records.push(resultFor(value));}
     if(activeGame&&!conflict.value&&!dirty.has(session.value.id)){const index=valid.findIndex(s=>s.id===session.value.id);if(index>=0)valid[index]=clone(session.value);}
     for(const record of records)if(!dirty.has(record.sessionId))durableCompletions.add(record.sessionId);
     sessions.value=valid;results.value=records;corruptions.value=bad;
     if(preferences)applySettings(Object.fromEntries(raw.settings.map(s=>[s.key,s.value])));
   }
-  async function registerDefinitions(puzzles,{strict=false}={}){
-    const unknown=[],invalid=[];
-    for(const definition of puzzles){
-      if(catalog.some(p=>p.id===definition?.id)){
-        try{cleanPuzzle(definition,catalog);}catch(error){invalid.push({puzzle:definition,reason:error.message});}
-      }else if(definition?.modeSource==='generated')unknown.push(definition);
-      else invalid.push({puzzle:definition,reason:'Unsupported puzzle definition.'});
-    }
-    if(unknown.length){
-      const verified=await verificationService.request('verify-generated',{puzzles:unknown,budget:{maxMs:4000,maxWork:6000000}});
-      for(const definition of verified.accepted||[])if(!catalog.some(p=>p.id===definition.id))catalog.push(definition);
-      for(const definition of unknown)if(!catalog.some(p=>p.id===definition.id))invalid.push({puzzle:definition,reason:'Generated puzzle could not be verified. Retry with worker support and keep a recovery backup.'});
-    }
-    if(strict&&invalid.length)throw Error(invalid[0].reason);
-    return invalid;
+  function registerDefinitions(puzzles,{strict=false}={}){
+    const task=verificationQueue.catch(()=>{}).then(async()=>{
+      const unknown=[],invalid=[];let deferred=[];
+      for(const definition of puzzles){
+        if(catalog.some(p=>p.id===definition?.id)){
+          try{cleanPuzzle(definition,catalog);}catch(error){invalid.push({puzzle:definition,reason:error.message});}
+        }else if(definition?.modeSource==='generated')unknown.push(definition);
+        else invalid.push({puzzle:definition,reason:'Unsupported puzzle definition.'});
+      }
+      if(unknown.length){
+        if(verificationPaused&&!strict)deferred=unknown;
+        else{
+          const controller=new AbortController();activeVerification=controller;
+          try{
+            const verified=await verifyDefinitions(verificationService,unknown,{isCancelled:()=>controller.signal.aborted,onProgress:progress=>{verificationProgress.value=progress;}});
+            for(const definition of verified.accepted)if(!catalog.some(p=>p.id===definition.id))catalog.push(definition);
+            for(const rejected of verified.rejected)invalid.push({puzzle:unknown.find(p=>p.id===rejected.id),reason:'Generated puzzle content is invalid or uses an unsupported generator version.'});
+            deferred=verified.deferred;if(deferred.length&&!strict)verificationPaused=true;
+          }finally{if(activeVerification===controller){activeVerification=null;verificationProgress.value=null;}}
+        }
+      }
+      if(strict&&invalid.length)throw Error(invalid[0].reason);
+      if(strict&&deferred.length)throw Error('Some puzzles still need verification. No data was imported. Try again to finish checking the backup.');
+      return{invalid,deferred};
+    });
+    verificationQueue=task;return task;
   }
+  function cancelVerification(){verificationPaused=true;activeVerification?.abort();verificationService.cancel();}
+  async function retryVerification(){verificationPaused=false;try{await refresh();}catch(error){fail(error);}}
   function refresh(preferences=false){
-    const pending=refreshQueue.catch(()=>{}).then(async()=>{if(!repo)return;const raw=await repo.snapshot();const invalidPuzzles=await registerDefinitions(raw.puzzles);ingest(raw,{preferences,invalidPuzzles});});
+    const pending=refreshQueue.catch(()=>{}).then(async()=>{if(!repo)return;const epoch=dataEpoch,raw=await repo.snapshot();const checked=await registerDefinitions(raw.puzzles);if(epoch!==dataEpoch)return;ingest(raw,{preferences,invalidPuzzles:checked.invalid,deferredPuzzles:checked.deferred});});
     refreshQueue=pending;return pending;
   }
   function puzzleSize(puzzleId){const definition=catalog.find(p=>p.id===puzzleId);return definition?`${definition.rows}×${definition.cols}`:'Saved puzzle';}
@@ -268,22 +288,22 @@ export default function useGame(){
     try{validateBackup(data,catalog);downloadJSON(data,'shikaku-save-'+new Date().toISOString().slice(0,10)+'.json');notify('Backup downloaded.');}catch(error){notify('Some local data needs recovery. Export the recovery file instead.');}
   }
   async function requestPersistence(){try{const granted=await navigator.storage?.persist?.();notify(granted?'Browser protection enabled. Clearing browser data can still remove saves.':'Browser protection was not granted. Keep an exported backup.');}catch{notify('Browser protection is unavailable. Keep an exported backup.');}}
-  function exportRecovery(){downloadJSON({recoveryFormatVersion:1,exportedAt:Date.now(),records:corruptions.value},'shikaku-recovery.json');}
+  function exportRecovery(){downloadJSON({recoveryFormatVersion:1,exportedAt:Date.now(),records:corruptions.value,pendingPuzzles:clone(pendingPuzzles.value),pendingSessions:clone(pendingRecovery.sessions),pendingResults:clone(pendingRecovery.results)},'shikaku-recovery.json');}
   async function selectImport(event){
-    const file=event.target.files?.[0];event.target.value='';if(!file)return;importError.value='';
+    const file=event.target.files?.[0];event.target.value='';if(!file||busy.value)return;importError.value='';
     try{if(file.size>5*1024*1024)throw Error('Backup must be smaller than 5 MB.');const input=JSON.parse(await file.text());if(!Array.isArray(input?.puzzles)||input.puzzles.length>1000)throw Error('Unsupported backup size.');busy.value=true;await registerDefinitions(input.puzzles,{strict:true});importPreview.value=validateBackup(input,catalog);importMode.value='merge';resetWord.value='';await openSheet('import');}
     catch(error){importError.value=error.message;notify('This backup cannot be imported. '+error.message);}finally{busy.value=false;}
   }
   async function applyImport(){
     if(!available.value||!repo||!importPreview.value)return;
     if(importMode.value==='replace'&&resetWord.value!=='REPLACE'){importError.value='Type REPLACE to confirm replacing local data.';return;}
-    busy.value=true;try{await repo.importData(importPreview.value,importMode.value);dirty.clear();dirtySettings.clear();durableCompletions.clear();activeGame=false;await refresh(importMode.value==='replace');importPreview.value=null;sheet.value=null;storageMessage.value='';notify('Backup imported.');}
+    busy.value=true;try{dataEpoch++;cancelVerification();await verificationQueue.catch(()=>{});await repo.importData(importPreview.value,importMode.value);dataEpoch++;verificationPaused=false;dirty.clear();dirtySettings.clear();durableCompletions.clear();activeGame=false;await refresh(importMode.value==='replace');importPreview.value=null;sheet.value=null;storageMessage.value='';notify('Backup imported.');}
     catch(error){importError.value=error.message;}finally{busy.value=false;}
   }
   async function resetData(){
     if(resetStep.value===1){resetStep.value=2;await nextTick();sheetElement.value?.querySelector('input')?.focus();return;}
     if(resetWord.value!=='RESET'||!repo)return;
-    busy.value=true;try{for(const id of [...repo.held.keys()])await repo.release(id);await repo.clear();catalog.splice(0,catalog.length,...classicLevels,...zenFallbackLevels);await repo.seed(catalog);dirty.clear();dirtySettings.clear();durableCompletions.clear();sessions.value=[];results.value=[];corruptions.value=[];activeGame=false;applySettings({theme:'system',reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches,sound:false,highContrast:false,selection:'both'});sheet.value=null;storageMessage.value='';notify('Local progress reset.');}
+    busy.value=true;try{dataEpoch++;cancelVerification();await verificationQueue.catch(()=>{});for(const id of [...repo.held.keys()])await repo.release(id);await repo.clear();dataEpoch++;verificationPaused=false;pendingPuzzles.value=[];pendingRecovery={sessions:[],results:[]};catalog.splice(0,catalog.length,...classicLevels,...zenFallbackLevels);await repo.seed(catalog);dirty.clear();dirtySettings.clear();durableCompletions.clear();sessions.value=[];results.value=[];corruptions.value=[];activeGame=false;applySettings({theme:'system',reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches,sound:false,highContrast:false,selection:'both'});sheet.value=null;storageMessage.value='';notify('Local progress reset.');}
     catch(error){notify(error.message);}finally{busy.value=false;}
   }
   async function reloadConflict(){busy.value=true;try{await repo?.release(session.value.id);dirty.delete(session.value.id);activeGame=false;conflict.value=false;await refresh();await loadGame(route.value);}catch(error){setConflict(error.message);}finally{busy.value=false;}}
@@ -296,11 +316,11 @@ export default function useGame(){
   function stayHere(){pendingPath=null;openSheet('options');}
   function onVisibility(){if(document.hidden){cancelHints(true);if(zenPending.value)cancelGeneration();}if(document.hidden&&activeGame&&session.value.status==='PLAYING'){pauseClock();persist();sheet.value='options';} }
   function onPageHide(){cancelHints(true);if(zenPending.value)cancelGeneration();if(activeGame){pauseClock();persist().finally(()=>repo?.release(session.value.id));}}
-  onMounted(async()=>{await initializeStorage();hydrating=false;ready.value=true;window.addEventListener('hashchange',scheduleRoute);document.addEventListener('visibilitychange',onVisibility);window.addEventListener('pagehide',onPageHide);systemDark.addEventListener('change',applyTheme);routeQueue=handleRoute();await routeQueue;
+  onMounted(async()=>{offlineSupport.start();await initializeStorage();hydrating=false;ready.value=true;window.addEventListener('hashchange',scheduleRoute);document.addEventListener('visibilitychange',onVisibility);window.addEventListener('pagehide',onPageHide);systemDark.addEventListener('change',applyTheme);routeQueue=handleRoute();await routeQueue;
     tick=setInterval(()=>{clockMs.value=timer.read();},250);
     checkpoint=setInterval(()=>{if(activeGame&&session.value.status==='PLAYING'&&!conflict.value){session.value.elapsedActiveMs=session.value.mode==='classic'?timer.checkpoint():0;persist();}},15000);
     heartbeat=setInterval(()=>{repo?.renew().catch(fail);},5000);
   });
-  onBeforeUnmount(()=>{generationService.close();verificationService.close();puzzleService.close();clearInterval(tick);clearInterval(checkpoint);clearInterval(heartbeat);clearTimeout(toastTimeout);window.removeEventListener('hashchange',scheduleRoute);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('pagehide',onPageHide);systemDark.removeEventListener('change',applyTheme);repo?.close();});
-  return {zenSizes,zenDifficulties,zenDifficulty,zenPending,zenNotice,startZen,cancelGeneration,puzzleSize,route,ready,loading,available,saving,storageMessage,conflict,owns,busy,theme,reducedMotion,sound,highContrast,selection,tierId,tier,tiers,zenSize,zoom,panMode,tutorialStep,sheet,toast,sheetElement,heading,isZen,pageTitle,covered,gameMessage,completedCount,lesson,tutorialCanNext,go,notify,openSheet,closeSheet,chooseLevel,selectTier,tierKey,sheetKey,getLevelClass,puzzle,session,selected,replacing,availableLevels,nextLevel,completedIds,move,boardShortcut,place,selectRegion,changeRegion,cancelSelection,restart,requestRestart,nextPuzzle,tutorialNext,sessions,results,summary,continueSession,zenContinue,currentRecord,newBest,clockMs,formatDuration,sessionPath,saveLabel,activeLevel,retrySave,exportSave,exportRecovery,corruptions,selectImport,importPreview,importMode,importError,backupCounts,resetStep,resetWord,applyImport,resetData,reloadConflict,separateSession,leaveTemporary,stayHere,classicLevels,requestPersistence,hintResult,hintPending,hintStrength,hintMode,highlightedClue,gameBoard,runAnalysis,cancelHints,openBoardCheck,showHintOnBoard,reviewHint};
+  onBeforeUnmount(()=>{cancelVerification();offlineSupport.stop();generationService.close();verificationService.close();puzzleService.close();clearInterval(tick);clearInterval(checkpoint);clearInterval(heartbeat);clearTimeout(toastTimeout);window.removeEventListener('hashchange',scheduleRoute);document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('pagehide',onPageHide);systemDark.removeEventListener('change',applyTheme);repo?.close();});
+  return {verificationProgress,pendingPuzzles,cancelVerification,retryVerification,offlineState,retryOffline:()=>offlineSupport.retry(),zenSizes,zenDifficulties,zenDifficulty,zenPending,zenNotice,startZen,cancelGeneration,puzzleSize,route,ready,loading,available,saving,storageMessage,conflict,owns,busy,theme,reducedMotion,sound,highContrast,selection,tierId,tier,tiers,zenSize,zoom,panMode,tutorialStep,sheet,toast,sheetElement,heading,isZen,pageTitle,covered,gameMessage,completedCount,lesson,tutorialCanNext,go,notify,openSheet,closeSheet,chooseLevel,selectTier,tierKey,sheetKey,getLevelClass,puzzle,session,selected,replacing,availableLevels,nextLevel,completedIds,move,boardShortcut,place,selectRegion,changeRegion,cancelSelection,restart,requestRestart,nextPuzzle,tutorialNext,sessions,results,summary,continueSession,zenContinue,currentRecord,newBest,clockMs,formatDuration,sessionPath,saveLabel,activeLevel,retrySave,exportSave,exportRecovery,corruptions,selectImport,importPreview,importMode,importError,backupCounts,resetStep,resetWord,applyImport,resetData,reloadConflict,separateSession,leaveTemporary,stayHere,classicLevels,requestPersistence,hintResult,hintPending,hintStrength,hintMode,highlightedClue,gameBoard,runAnalysis,cancelHints,openBoardCheck,showHintOnBoard,reviewHint};
 }

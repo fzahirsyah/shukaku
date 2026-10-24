@@ -1,5 +1,5 @@
 {
-  "method": "100 distinct accepted per size/difficulty; max 400 requests or 20 seconds per pairing; production work/node/time budgets; independent countSolutions implementation; replay/restore every tenth acceptance",
+  "method": "100 distinct accepted per size/difficulty; max 2500 requests or 20 seconds per pairing; production work/node/time budgets; independent countSolutions implementation; replay/restore every tenth acceptance",
   "results": [
     {
       "size": 5,
@@ -830,123 +830,6 @@
         {
           "id": "zen-zen-1-5-balanced-audit-5-balanced-177_17",
           "score": 58
-        }
-      ]
-    },
-    {
-      "size": 5,
-      "difficulty": "challenging",
-      "distinctAccepted": 25,
-      "independentlyUnique": 25,
-      "requests": 400,
-      "attempts": 18680,
-      "failures": {
-        "ATTEMPT_BUDGET": 375
-      },
-      "violations": [],
-      "elapsedMs": 882,
-      "maxDurationMs": 4,
-      "gatePassed": false,
-      "accepted": [
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-1_42",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-6_29",
-          "score": 66
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-24",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-30_36",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-31_36",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-50_11",
-          "score": 65
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-66_8",
-          "score": 63
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-71_10",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-75_46",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-94_32",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-98_32",
-          "score": 64
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-99_1",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-118_34",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-145_19",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-167_40",
-          "score": 63
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-207_33",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-233_46",
-          "score": 64
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-234_32",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-240_3",
-          "score": 64
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-265_11",
-          "score": 63
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-274_29",
-          "score": 63
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-283_33",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-327_47",
-          "score": 66
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-362_40",
-          "score": 62
-        },
-        {
-          "id": "zen-zen-1-5-challenging-audit-5-challenging-369_5",
-          "score": 64
         }
       ]
     },
@@ -5947,6 +5830,423 @@
           "score": 65
         }
       ]
+    },
+    {
+      "size": 5,
+      "difficulty": "challenging",
+      "distinctAccepted": 100,
+      "independentlyUnique": 100,
+      "requests": 1300,
+      "attempts": 60070,
+      "failures": {
+        "ATTEMPT_BUDGET": 1200
+      },
+      "violations": [],
+      "elapsedMs": 2848,
+      "maxDurationMs": 22,
+      "gatePassed": true,
+      "accepted": [
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1_42",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-6_29",
+          "score": 66
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-24",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-30_36",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-31_36",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-50_11",
+          "score": 65
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-66_8",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-71_10",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-75_46",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-94_32",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-98_32",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-99_1",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-118_34",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-145_19",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-167_40",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-207_33",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-233_46",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-234_32",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-240_3",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-265_11",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-274_29",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-283_33",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-327_47",
+          "score": 66
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-362_40",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-369_5",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-413_24",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-432_4",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-454_42",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-459_3",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-482_39",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-493_42",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-494_19",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-498_2",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-525_29",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-554_26",
+          "score": 66
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-565_23",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-574_23",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-578_25",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-613_3",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-615_37",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-621_46",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-640_20",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-675_5",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-677_45",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-722_36",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-729_37",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-732_1",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-777_22",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-779_26",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-792_9",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-800_6",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-809_2",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-822_37",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-826_20",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-827_31",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-846_17",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-859_23",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-860_41",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-870",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-905_8",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-907_46",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-911_45",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-915_14",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-929_15",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-940_40",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-943_25",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-962_15",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-967_34",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-980_39",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-982_9",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-988_2",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1001_33",
+          "score": 64
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1007_5",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1012_26",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1013_31",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1015_6",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1020_16",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1028_17",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1047_26",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1048_39",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1054_14",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1082_39",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1084_5",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1105_10",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1106_8",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1110_38",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1112_18",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1142_38",
+          "score": 65
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1156_18",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1160_20",
+          "score": 61
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1179_38",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1181_2",
+          "score": 65
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1194_3",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1242_41",
+          "score": 65
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1249_5",
+          "score": 65
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1258_22",
+          "score": 62
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1259_15",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1262_39",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1298_40",
+          "score": 63
+        },
+        {
+          "id": "zen-zen-1-5-challenging-audit-5-challenging-1299_46",
+          "score": 62
+        }
+      ]
     }
   ],
   "examples": [
@@ -6140,83 +6440,6 @@
           "col": 2,
           "height": 2,
           "width": 3
-        }
-      ]
-    },
-    {
-      "id": "zen-zen-1-5-challenging-audit-5-challenging-1_42",
-      "contentVersion": 1,
-      "rows": 5,
-      "cols": 5,
-      "difficulty": "challenging",
-      "modeSource": "generated",
-      "seed": "audit-5-challenging-1_42",
-      "generatorVersion": "zen-1",
-      "clues": [
-        {
-          "id": "z0",
-          "row": 1,
-          "col": 3,
-          "value": 8
-        },
-        {
-          "id": "z1",
-          "row": 2,
-          "col": 0,
-          "value": 4
-        },
-        {
-          "id": "z2",
-          "row": 0,
-          "col": 4,
-          "value": 3
-        },
-        {
-          "id": "z3",
-          "row": 4,
-          "col": 1,
-          "value": 10
-        }
-      ],
-      "uniqueVerified": true,
-      "logicScore": 62,
-      "logicMetrics": {
-        "logicScore": 62,
-        "initialCandidates": 14,
-        "initialForced": 0,
-        "deductionRounds": 0,
-        "soleCellDeductions": 0,
-        "logicalRegions": 0,
-        "unresolved": 4
-      },
-      "solution": [
-        {
-          "clueId": "z0",
-          "row": 0,
-          "col": 0,
-          "height": 2,
-          "width": 4
-        },
-        {
-          "clueId": "z1",
-          "row": 2,
-          "col": 0,
-          "height": 1,
-          "width": 4
-        },
-        {
-          "clueId": "z2",
-          "row": 0,
-          "col": 4,
-          "height": 3,
-          "width": 1
-        },
-        {
-          "clueId": "z3",
-          "row": 3,
-          "col": 0,
-          "height": 2,
-          "width": 5
         }
       ]
     },
@@ -9221,6 +9444,83 @@
           "col": 10,
           "height": 8,
           "width": 2
+        }
+      ]
+    },
+    {
+      "id": "zen-zen-1-5-challenging-audit-5-challenging-1_42",
+      "contentVersion": 1,
+      "rows": 5,
+      "cols": 5,
+      "difficulty": "challenging",
+      "modeSource": "generated",
+      "seed": "audit-5-challenging-1_42",
+      "generatorVersion": "zen-1",
+      "clues": [
+        {
+          "id": "z0",
+          "row": 1,
+          "col": 3,
+          "value": 8
+        },
+        {
+          "id": "z1",
+          "row": 2,
+          "col": 0,
+          "value": 4
+        },
+        {
+          "id": "z2",
+          "row": 0,
+          "col": 4,
+          "value": 3
+        },
+        {
+          "id": "z3",
+          "row": 4,
+          "col": 1,
+          "value": 10
+        }
+      ],
+      "uniqueVerified": true,
+      "logicScore": 62,
+      "logicMetrics": {
+        "logicScore": 62,
+        "initialCandidates": 14,
+        "initialForced": 0,
+        "deductionRounds": 0,
+        "soleCellDeductions": 0,
+        "logicalRegions": 0,
+        "unresolved": 4
+      },
+      "solution": [
+        {
+          "clueId": "z0",
+          "row": 0,
+          "col": 0,
+          "height": 2,
+          "width": 4
+        },
+        {
+          "clueId": "z1",
+          "row": 2,
+          "col": 0,
+          "height": 1,
+          "width": 4
+        },
+        {
+          "clueId": "z2",
+          "row": 0,
+          "col": 4,
+          "height": 3,
+          "width": 1
+        },
+        {
+          "clueId": "z3",
+          "row": 3,
+          "col": 0,
+          "height": 2,
+          "width": 5
         }
       ]
     }

@@ -14,7 +14,7 @@ export const tiers = [
 export const tutorialBeats = [
   ['Every number has a home.', 'Every number belongs to one rectangle. Cover the whole board to finish.'],
   ['Four cells. One rectangle.', 'The rectangle around 4 covers exactly four cells. Each rectangle contains just one number.'],
-  ['Choose two corners.', 'Drag between two corners, or tap one corner and then the opposite corner.'],
+  ['Choose two corners.', 'Drag between two corners, or tap one corner and then the opposite corner. Double-tap an empty cell to cancel; double-tap a placed rectangle to remove it.'],
   ['Give each shape its space.', 'Rectangles cannot overlap or include another number.'],
   ['Find the remaining shapes.', 'Keep going until every cell belongs to a rectangle.'],
   ["You’re ready.", 'Choose a puzzle and find your own rhythm. You can revisit these rules anytime.']

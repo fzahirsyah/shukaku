@@ -1,0 +1,227 @@
+[
+  {
+    "path": "LICENSE",
+    "bytes": 1073,
+    "sha256": "940520dd6e6de187bc5e71e1490e30e1f8a0631c7a2fab29a985e1ee1ceff2c4"
+  },
+  {
+    "path": "README.txt",
+    "bytes": 455,
+    "sha256": "9fcae6bdd51261e3653550549e22eae3297fafdb0b91466055011708be1f878e"
+  },
+  {
+    "path": "assets/app-icon.svg",
+    "bytes": 408,
+    "sha256": "5e55d115e10326c767268ae2cc04e483ef1f921a339d113e339bd63033192288"
+  },
+  {
+    "path": "assets/favicon.svg",
+    "bytes": 416,
+    "sha256": "8795defc95fc1a14fb37f6256a57c8c4ac5ef67a61a45b77860916d410fa5b88"
+  },
+  {
+    "path": "assets/icon-180.png",
+    "bytes": 5451,
+    "sha256": "e3ceb1fdb3857b60fefc01c0688a1a374b8e6ee738dc8e90fc7d56c6f5b36055"
+  },
+  {
+    "path": "assets/icon-192.png",
+    "bytes": 5782,
+    "sha256": "4ac4c9b90114647796e3e6478a69bc7357218a9986b3fe642990e332f2221ae7"
+  },
+  {
+    "path": "assets/icon-32.png",
+    "bytes": 1130,
+    "sha256": "488e044a302f738d7a732f6017b070c0e8e575a55109f3428d318382bfa47e70"
+  },
+  {
+    "path": "assets/icon-512.png",
+    "bytes": 14842,
+    "sha256": "60478dc2802a4ec6baf25a5d4c3face094b96ff090d1f419ef96e7b74ab46aac"
+  },
+  {
+    "path": "assets/icon-maskable-512.png",
+    "bytes": 13080,
+    "sha256": "b169bab8aa635e54d333c3df4ba1db4a0f87534f086e491b09167e4cea0e2fe5"
+  },
+  {
+    "path": "assets/sakura-branch.svg",
+    "bytes": 1375,
+    "sha256": "9ee39f4b906030464a8b4ed0dd7808e24da882f75ae4577766fac43b7d1a1b31"
+  },
+  {
+    "path": "css/base.css",
+    "bytes": 2798,
+    "sha256": "1babc37d3b3e1b567c123b6ef829e9d5b4cacbc35742730fd509f2d48ad18cc6"
+  },
+  {
+    "path": "css/desktop.css",
+    "bytes": 5238,
+    "sha256": "20e06848e0c49280c5d4f82c85fa2a8c8cdaee55d8cdf873aebd619b44d58237"
+  },
+  {
+    "path": "css/mobile.css",
+    "bytes": 15478,
+    "sha256": "a37c71373a5d73819fcd82c03e87a29adf782998c991d3f9ab7c98058c03f5a4"
+  },
+  {
+    "path": "css/motion.css",
+    "bytes": 765,
+    "sha256": "8dbd1de5e21ad7e6650a72992d7076bc2958399d81cd2d7efab1359b02293dde"
+  },
+  {
+    "path": "css/tokens.css",
+    "bytes": 972,
+    "sha256": "a82200f83bcc7d0c020fb7136f60a30748244bf8f0e824d5ac88e292a2b98993"
+  },
+  {
+    "path": "index.html",
+    "bytes": 1182,
+    "sha256": "b2e569770272ca0d8e79659c74d819770d9f6379525cd7c8333adb4989352b92"
+  },
+  {
+    "path": "js/app.js",
+    "bytes": 29967,
+    "sha256": "70933fa4de0d0ec455d51705392b78ff2d552c817bf371d653111c4e4c2e3fc2"
+  },
+  {
+    "path": "js/components/icon.js",
+    "bytes": 1410,
+    "sha256": "c81747e9d8bb4ca733d7b8a62115a8adae91bf26cb137ac99dc7c948aabb8102"
+  },
+  {
+    "path": "js/components/keyboard-guide.js",
+    "bytes": 1185,
+    "sha256": "d67e61a9c7bbc9ee7b3734b1691575a17de7d52261b3c78d0d074b8f636a48fc"
+  },
+  {
+    "path": "js/components/puzzle-board.js",
+    "bytes": 11477,
+    "sha256": "7707060d7892b6536f53337dc04e3c0b4e76bab152454844f35417500151947a"
+  },
+  {
+    "path": "js/data/classic-levels.js",
+    "bytes": 5290,
+    "sha256": "497348c18745168cdd324c378c0283fcf6c6f111846fa77d4b8bc4b4ad099aac"
+  },
+  {
+    "path": "js/data/fixtures.js",
+    "bytes": 1827,
+    "sha256": "2b1082698f37538fd2a11764a806a818afe320d490d15e8b327e8d09cad96873"
+  },
+  {
+    "path": "js/data/zen-fallback-levels.js",
+    "bytes": 213,
+    "sha256": "35af7ff39d356c9ab9a840db2cb32382bb0f7bb336193fd1e8a80c110a5fc550"
+  },
+  {
+    "path": "js/engine/difficulty.js",
+    "bytes": 2276,
+    "sha256": "1b164a451dedf428a99e36ca6770a53bab410e44c63ded4e330ccc77c0dd966e"
+  },
+  {
+    "path": "js/engine/generator.js",
+    "bytes": 5793,
+    "sha256": "3533761d6b030f9c8fb1c4cf6b43ce1b28038bc6857ee1e86c2cb52b7af55bb6"
+  },
+  {
+    "path": "js/engine/hint-engine.js",
+    "bytes": 5270,
+    "sha256": "e75760113b4a39d7401d5be36cb3754997792f461368ba56da5a7e632f5c826c"
+  },
+  {
+    "path": "js/engine/moves.js",
+    "bytes": 3129,
+    "sha256": "6ca4b64e5b24ec662de0e418ebb638431e3c44c66a73573dad3e90fa366cada2"
+  },
+  {
+    "path": "js/engine/seeded-random.js",
+    "bytes": 432,
+    "sha256": "d0074ce4c7c5dcc97425fb0f850ea8a0934114b1e1728162623d11bdf0f272ac"
+  },
+  {
+    "path": "js/engine/solver.js",
+    "bytes": 4794,
+    "sha256": "af78722eb78febe28a3a45467a287b1864b8752f05291322b9059a7ed100c79f"
+  },
+  {
+    "path": "js/engine/validator.js",
+    "bytes": 3500,
+    "sha256": "5c921fe3a2304b4128f8c417d7d1d3d664f9af54299e5c0a570bff41c3780f9e"
+  },
+  {
+    "path": "js/router.js",
+    "bytes": 490,
+    "sha256": "f38bbd65c2e988592cd2b7e59209b3cd093d83f15593b3ddb0b445d1ae9ae59b"
+  },
+  {
+    "path": "js/state/definition-verifier.js",
+    "bytes": 1661,
+    "sha256": "faed8f3bebfe4be212182c92b68d9af4691c99c337c63e1494437b9e28e0b8c4"
+  },
+  {
+    "path": "js/state/offline.js",
+    "bytes": 3304,
+    "sha256": "e70438f72528d301d54b8ebe9db3e853f92f21ed7ece0756e950af1dad40b9f6"
+  },
+  {
+    "path": "js/state/puzzle-service.js",
+    "bytes": 2069,
+    "sha256": "0a5573fe1e985c30bcaee62f30a418db953528a59ea05ac411013ceaa83cfa9a"
+  },
+  {
+    "path": "js/state/timer.js",
+    "bytes": 1826,
+    "sha256": "433dc27c7a5e28739cbeda0affccec98e8e1cf7e729a6bf78b7c489348830668"
+  },
+  {
+    "path": "js/state/use-game.js",
+    "bytes": 40840,
+    "sha256": "dd855b4c94c85c9e846bc60394c14d8519e3496e290ad39548ad22dddb0c3a1f"
+  },
+  {
+    "path": "js/storage/backup.js",
+    "bytes": 2136,
+    "sha256": "b84cc3c7063c8e0a8f9c30dd3ceb203a5fc21f47a16f52f5d5c5b1f410db1b5c"
+  },
+  {
+    "path": "js/storage/indexeddb.js",
+    "bytes": 9836,
+    "sha256": "5e5f19987993ce363f5939f516eb65a23bb512e19df2e324ca2f5a99a34059ea"
+  },
+  {
+    "path": "js/storage/schema.js",
+    "bytes": 4591,
+    "sha256": "3adb91fc3141320a7203ffd01c282134438ea703ba0c56939943827db1f754a7"
+  },
+  {
+    "path": "js/workers/puzzle-worker.js",
+    "bytes": 1972,
+    "sha256": "78a65fcd1951102b561d209c9c0b31fc93d804ee384c238f80ba5b01f5801c04"
+  },
+  {
+    "path": "manifest.webmanifest",
+    "bytes": 540,
+    "sha256": "d3083aabf15f89675e5b6928bd5dde395010d4632c566f95e376d6aa70dafc06"
+  },
+  {
+    "path": "service-worker.js",
+    "bytes": 4098,
+    "sha256": "f89d4cab7f1ded98c2ab71519189c38fbc1c0d445def513e42646fb96b592338"
+  },
+  {
+    "path": "vendor/README.md",
+    "bytes": 389,
+    "sha256": "c57ae1a1d1c5c4107d34f36ae5c469e68e3ba6363f002e8753f531db10778853"
+  },
+  {
+    "path": "vendor/VUE-LICENSE.txt",
+    "bytes": 1102,
+    "sha256": "dbe09c20e1b8500f5c3819390bf9da29e29117d8946082f875a6269ffe9b64f6"
+  },
+  {
+    "path": "vendor/vue.global.prod.js",
+    "bytes": 159632,
+    "sha256": "dae9c178e86e09240e58721cdb46a81ac96ae1dc6a870d1b1bb9ffaee3c6d3fe"
+  }
+]

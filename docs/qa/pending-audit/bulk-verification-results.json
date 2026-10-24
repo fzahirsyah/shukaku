@@ -1,0 +1,9 @@
+{
+  "definitions": 300,
+  "backupBytes": 1068783,
+  "status": "PARTIAL",
+  "accepted": 197,
+  "rejected": [],
+  "reason": "WORK_BUDGET",
+  "elapsedMs": 570
+}

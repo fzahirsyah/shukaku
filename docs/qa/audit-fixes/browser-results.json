@@ -1,0 +1,1142 @@
+{
+  "checks": [
+    {
+      "name": "existing browser harness",
+      "detail": {
+        "passed": 79
+      }
+    },
+    {
+      "name": "responsive screens 320",
+      "detail": [
+        {
+          "name": "home",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "classic",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "zen-entry",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "settings",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "board",
+          "overflow": false,
+          "board": {
+            "x": 9,
+            "y": 179.5,
+            "width": 302,
+            "height": 302
+          },
+          "tools": {
+            "x": 12,
+            "y": 526.5,
+            "width": 296,
+            "height": 205
+          },
+          "targets": []
+        }
+      ]
+    },
+    {
+      "name": "responsive screens 360",
+      "detail": [
+        {
+          "name": "home",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "classic",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "zen-entry",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "settings",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "board",
+          "overflow": false,
+          "board": {
+            "x": 17,
+            "y": 215.5,
+            "width": 326,
+            "height": 326
+          },
+          "tools": {
+            "x": 20,
+            "y": 597.5,
+            "width": 320,
+            "height": 205
+          },
+          "targets": []
+        }
+      ]
+    },
+    {
+      "name": "responsive screens 390",
+      "detail": [
+        {
+          "name": "home",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "classic",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "zen-entry",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "settings",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "board",
+          "overflow": false,
+          "board": {
+            "x": 17,
+            "y": 215.5,
+            "width": 356,
+            "height": 356
+          },
+          "tools": {
+            "x": 20,
+            "y": 627.5,
+            "width": 350,
+            "height": 205
+          },
+          "targets": []
+        }
+      ]
+    },
+    {
+      "name": "responsive screens 430",
+      "detail": [
+        {
+          "name": "home",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "classic",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "zen-entry",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "settings",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "board",
+          "overflow": false,
+          "board": {
+            "x": 17,
+            "y": 215.5,
+            "width": 396,
+            "height": 396
+          },
+          "tools": {
+            "x": 20,
+            "y": 667.5,
+            "width": 390,
+            "height": 205
+          },
+          "targets": []
+        }
+      ]
+    },
+    {
+      "name": "responsive screens 768",
+      "detail": [
+        {
+          "name": "home",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "classic",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "zen-entry",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "settings",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "board",
+          "overflow": false,
+          "board": {
+            "x": 29,
+            "y": 243.5,
+            "width": 466,
+            "height": 466
+          },
+          "tools": {
+            "x": 520,
+            "y": 142,
+            "width": 216,
+            "height": 672.90625
+          },
+          "targets": []
+        }
+      ]
+    },
+    {
+      "name": "responsive screens 1440",
+      "detail": [
+        {
+          "name": "home",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "classic",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "zen-entry",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "settings",
+          "overflow": false,
+          "board": null,
+          "tools": null,
+          "targets": []
+        },
+        {
+          "name": "board",
+          "overflow": false,
+          "board": {
+            "x": 253,
+            "y": 243.5,
+            "width": 626,
+            "height": 626
+          },
+          "tools": {
+            "x": 968,
+            "y": 142,
+            "width": 264,
+            "height": 665.109375
+          },
+          "targets": []
+        }
+      ]
+    },
+    {
+      "name": "desktop keyboard navigation and reversible commands",
+      "detail": {
+        "regions": 1,
+        "zoomFit": true,
+        "paused": true
+      }
+    },
+    {
+      "name": "dialog focus trap includes keyboard guide",
+      "detail": true
+    },
+    {
+      "name": "desktop dark and reduced motion",
+      "detail": true
+    },
+    {
+      "name": "real worker generation, timer-free Zen, save and restore",
+      "detail": {
+        "id": "zen-zen-1-5-gentle-55e29664-a5df-4b8f-bda5-211f6e886a93_7",
+        "restored": true
+      }
+    },
+    {
+      "name": "generated backup export and new-context import",
+      "detail": {
+        "sessions": 2,
+        "puzzles": 2
+      }
+    },
+    {
+      "name": "tampered generated import rejected",
+      "detail": true
+    },
+    {
+      "name": "actual worker generation cancellation and work/time limits",
+      "detail": {
+        "cancelled": true,
+        "limited": {
+          "status": "UNAVAILABLE",
+          "reason": "WORK_BUDGET"
+        },
+        "timed": {
+          "status": "UNAVAILABLE",
+          "reason": "TIME_BUDGET"
+        }
+      }
+    },
+    {
+      "name": "worker unavailable fallback exhaustion and size disclosure",
+      "detail": {
+        "ids": [
+          "zen-fallback-5-001",
+          "zen-fallback-5-003",
+          "zen-fallback-5-002",
+          "zen-fallback-5-001"
+        ],
+        "messages": [
+          "Opening a ready-made 5×5 puzzle. The requested 12×12 puzzle wasn’t available. It may differ from your chosen difficulty.",
+          "Opening a ready-made 5×5 puzzle. The requested 12×12 puzzle wasn’t available. It may differ from your chosen difficulty.",
+          "Opening a ready-made 5×5 puzzle. The requested 12×12 puzzle wasn’t available. It may differ from your chosen difficulty.",
+          "Opening a ready-made 5×5 puzzle you’ve played before. The requested 12×12 puzzle wasn’t available. It may differ from your chosen difficulty."
+        ]
+      }
+    },
+    {
+      "name": "all supported sizes/difficulties reproduce through actual module worker",
+      "detail": [
+        {
+          "size": 5,
+          "difficulty": "gentle",
+          "elapsedMs": 10,
+          "mainThreadBeats": 4
+        },
+        {
+          "size": 5,
+          "difficulty": "balanced",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 5,
+          "difficulty": "challenging",
+          "elapsedMs": 0,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 6,
+          "difficulty": "gentle",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 6,
+          "difficulty": "balanced",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 6,
+          "difficulty": "challenging",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 7,
+          "difficulty": "gentle",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 7,
+          "difficulty": "balanced",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 7,
+          "difficulty": "challenging",
+          "elapsedMs": 1,
+          "mainThreadBeats": 0
+        },
+        {
+          "size": 10,
+          "difficulty": "gentle",
+          "elapsedMs": 4,
+          "mainThreadBeats": 1
+        },
+        {
+          "size": 10,
+          "difficulty": "balanced",
+          "elapsedMs": 3,
+          "mainThreadBeats": 1
+        },
+        {
+          "size": 10,
+          "difficulty": "challenging",
+          "elapsedMs": 2,
+          "mainThreadBeats": 1
+        },
+        {
+          "size": 12,
+          "difficulty": "gentle",
+          "elapsedMs": 6,
+          "mainThreadBeats": 2
+        },
+        {
+          "size": 12,
+          "difficulty": "balanced",
+          "elapsedMs": 7,
+          "mainThreadBeats": 3
+        },
+        {
+          "size": 12,
+          "difficulty": "challenging",
+          "elapsedMs": 11,
+          "mainThreadBeats": 5
+        }
+      ]
+    },
+    {
+      "name": "delayed generation UI cancellation and navigation reject late results",
+      "detail": true
+    },
+    {
+      "name": "worker deadline remains unavailable rather than unchecked publication",
+      "detail": "DEADLINE"
+    },
+    {
+      "name": "12 by 12 phone zoom pan and anchor preservation",
+      "detail": {
+        "panScrollLeft": 267,
+        "anchorKept": true
+      }
+    },
+    {
+      "name": "second-visit offline navigation",
+      "detail": {
+        "supported": true,
+        "registrations": 1
+      }
+    },
+    {
+      "name": "no unexpected page errors or remote runtime requests",
+      "detail": true
+    }
+  ],
+  "failures": [],
+  "screens": [
+    "320-home.png",
+    "320-classic.png",
+    "320-zen-entry.png",
+    "320-settings.png",
+    "320-board.png",
+    "360-home.png",
+    "360-classic.png",
+    "360-zen-entry.png",
+    "360-settings.png",
+    "360-board.png",
+    "390-home.png",
+    "390-classic.png",
+    "390-zen-entry.png",
+    "390-settings.png",
+    "390-board.png",
+    "430-home.png",
+    "430-classic.png",
+    "430-zen-entry.png",
+    "430-settings.png",
+    "430-board.png",
+    "768-home.png",
+    "768-classic.png",
+    "768-zen-entry.png",
+    "768-settings.png",
+    "768-board.png",
+    "1440-home.png",
+    "1440-classic.png",
+    "1440-zen-entry.png",
+    "1440-settings.png",
+    "1440-board.png",
+    "1440-paused-keyboard.png",
+    "1440-dark-settings.png",
+    "1440-dark-board.png",
+    "1440-generated-zen.png",
+    "390-fallback-repeat.png",
+    "320-large-zoom-pan.png"
+  ],
+  "errors": [],
+  "network": [],
+  "harness": [
+    {
+      "name": "VAL-01 accepts 2×3 clue 6",
+      "pass": true
+    },
+    {
+      "name": "VAL-02 rejects incorrect area",
+      "pass": true
+    },
+    {
+      "name": "VAL-03 rejects zero clues",
+      "pass": true
+    },
+    {
+      "name": "VAL-04 rejects multiple clues",
+      "pass": true
+    },
+    {
+      "name": "VAL-05 rejects out of bounds",
+      "pass": true
+    },
+    {
+      "name": "VAL-06 rejects overlap",
+      "pass": true
+    },
+    {
+      "name": "VAL-07 invalid replacement preserves exact state",
+      "pass": true
+    },
+    {
+      "name": "Dimension and structure guards",
+      "pass": true
+    },
+    {
+      "name": "WIN-01 complete once and lock all further moves",
+      "pass": true
+    },
+    {
+      "name": "WIN-02 uncovered and duplicate regions do not complete",
+      "pass": true
+    },
+    {
+      "name": "UNDO-01 place → undo → redo is exact",
+      "pass": true
+    },
+    {
+      "name": "UNDO-02 new command clears redo",
+      "pass": true
+    },
+    {
+      "name": "Local validity does not compare hidden solution",
+      "pass": true
+    },
+    {
+      "name": "Duplicate pointer token cannot double commit",
+      "pass": true
+    },
+    {
+      "name": "Remove, restart and undo are reversible",
+      "pass": true
+    },
+    {
+      "name": "Replacement is atomic, undo restores original",
+      "pass": true
+    },
+    {
+      "name": "History restore of full coverage also locks completion",
+      "pass": true
+    },
+    {
+      "name": "Paused sessions reject input",
+      "pass": true
+    },
+    {
+      "name": "History is bounded at 100 commands",
+      "pass": true
+    },
+    {
+      "name": "Verifier distinguishes ambiguous, unsolvable and unique",
+      "pass": true
+    },
+    {
+      "name": "CONTENT tutorial-4x4: unique and valid canonical partition",
+      "pass": true
+    },
+    {
+      "name": "CONTENT classic-beginner-001: unique and valid canonical partition",
+      "pass": true
+    },
+    {
+      "name": "CONTENT classic-beginner-002: unique and valid canonical partition",
+      "pass": true
+    },
+    {
+      "name": "CONTENT classic-beginner-003: unique and valid canonical partition",
+      "pass": true
+    },
+    {
+      "name": "SOL-01 tutorial uniquely solved without stored solution",
+      "pass": true
+    },
+    {
+      "name": "SOL-02 structurally valid unsolvable puzzle",
+      "pass": true
+    },
+    {
+      "name": "SOL-03 ambiguous puzzle stops at two completions",
+      "pass": true
+    },
+    {
+      "name": "SOL-04 node/work/time budgets never imply uniqueness",
+      "pass": true
+    },
+    {
+      "name": "SOL-09 one found solution under interruption is never called unique",
+      "pass": true
+    },
+    {
+      "name": "SOL-05 cooperative cancellation",
+      "pass": true
+    },
+    {
+      "name": "SOL-06 fixed rectangles and forbidden alternatives",
+      "pass": true
+    },
+    {
+      "name": "SOL-07 invalid position and bad clue sum rejected",
+      "pass": true
+    },
+    {
+      "name": "SOL-08 exhaustive 2×3 clue layouts agree with independent verifier",
+      "pass": true
+    },
+    {
+      "name": "HINT-01 nudge/explain do not mutate a board",
+      "pass": true
+    },
+    {
+      "name": "HINT-02 reveal is valid and forced, not copied from stored answer",
+      "pass": true
+    },
+    {
+      "name": "HINT-03 contradiction preserves rectangles and never reveals",
+      "pass": true
+    },
+    {
+      "name": "HINT-04 consistent Check does not promise the answer is unique",
+      "pass": true
+    },
+    {
+      "name": "HINT-05 ambiguous choices cannot reveal an unproven rectangle",
+      "pass": true
+    },
+    {
+      "name": "HINT-06 timeout/cancel/invalid puzzle stay honest",
+      "pass": true
+    },
+    {
+      "name": "HINT-07 completed board needs no hint",
+      "pass": true
+    },
+    {
+      "name": "HINT-08 repeated reveal can finish all shipped levels without contradiction",
+      "pass": true
+    },
+    {
+      "name": "VERIFY tutorial-4x4: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "VERIFY classic-beginner-001: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "VERIFY classic-beginner-002: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "VERIFY classic-beginner-003: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "VERIFY zen-fallback-5-001: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "VERIFY zen-fallback-5-002: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "VERIFY zen-fallback-5-003: runtime and independent counters agree",
+      "pass": true
+    },
+    {
+      "name": "SCHEMA v1 stores and indexes",
+      "pass": true
+    },
+    {
+      "name": "SAVE-01 move survives database read and validates",
+      "pass": true
+    },
+    {
+      "name": "Concurrent tab cannot claim active lease",
+      "pass": true
+    },
+    {
+      "name": "Revision mismatch rejects stale save",
+      "pass": true
+    },
+    {
+      "name": "Expired lease can be claimed without overwriting board",
+      "pass": true
+    },
+    {
+      "name": "Serialized writes preserve newest snapshot",
+      "pass": true
+    },
+    {
+      "name": "SAVE-02 completion and result atomic and idempotent",
+      "pass": true
+    },
+    {
+      "name": "Completion transaction rolls back on failure",
+      "pass": true
+    },
+    {
+      "name": "Settings survive write/read",
+      "pass": true
+    },
+    {
+      "name": "TIME-01 active clock excludes pause and wall-clock changes",
+      "pass": true
+    },
+    {
+      "name": "Personal best and no-hint best never become slower",
+      "pass": true
+    },
+    {
+      "name": "IMPORT-01 export/import roundtrip with safe paused restore",
+      "pass": true
+    },
+    {
+      "name": "Corrupted, missing, duplicate, incompatible backups rejected",
+      "pass": true
+    },
+    {
+      "name": "Merge adds only new IDs and preserves preferences",
+      "pass": true
+    },
+    {
+      "name": "Replace import refuses another active editor",
+      "pass": true
+    },
+    {
+      "name": "Replace import updates stores together and reset clears all",
+      "pass": true
+    },
+    {
+      "name": "WORKER-01 actual worker solves and explains",
+      "pass": true
+    },
+    {
+      "name": "WORKER-02 interrupted search reports UNKNOWN",
+      "pass": true
+    },
+    {
+      "name": "WORKER-03 cancel rejects stale request, next request works",
+      "pass": true
+    },
+    {
+      "name": "WORKER-04 unsupported worker returns safe unavailable",
+      "pass": true
+    },
+    {
+      "name": "WORKER-05 hard deadline terminates stalled worker",
+      "pass": true
+    },
+    {
+      "name": "WORKER-06 late messages cannot resolve a newer request",
+      "pass": true
+    },
+    {
+      "name": "WORKER-07 failure resolves safely and allows a fresh worker",
+      "pass": true
+    },
+    {
+      "name": "WORKER-08 cooperative worker cancellation keeps main thread responsive",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-01 supported histories use bounded chunks, not one shared proof budget",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-02 partial batches split and finish remaining proofs",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-03 one proof hitting its limit is pending, not invalid",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-04 unsupported workers preserve unverified definitions",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-05 cancellation preserves all unfinished definitions",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-06 invalid content remains rejected while valid content finishes",
+      "pass": true
+    },
+    {
+      "name": "VERIFY-07 overall deadline preserves pending history",
+      "pass": true
+    }
+  ],
+  "geometry320": [
+    {
+      "name": "home",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "classic",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "zen-entry",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "settings",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "board",
+      "overflow": false,
+      "board": {
+        "x": 9,
+        "y": 179.5,
+        "width": 302,
+        "height": 302
+      },
+      "tools": {
+        "x": 12,
+        "y": 526.5,
+        "width": 296,
+        "height": 205
+      },
+      "targets": []
+    }
+  ],
+  "geometry360": [
+    {
+      "name": "home",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "classic",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "zen-entry",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "settings",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "board",
+      "overflow": false,
+      "board": {
+        "x": 17,
+        "y": 215.5,
+        "width": 326,
+        "height": 326
+      },
+      "tools": {
+        "x": 20,
+        "y": 597.5,
+        "width": 320,
+        "height": 205
+      },
+      "targets": []
+    }
+  ],
+  "geometry390": [
+    {
+      "name": "home",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "classic",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "zen-entry",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "settings",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "board",
+      "overflow": false,
+      "board": {
+        "x": 17,
+        "y": 215.5,
+        "width": 356,
+        "height": 356
+      },
+      "tools": {
+        "x": 20,
+        "y": 627.5,
+        "width": 350,
+        "height": 205
+      },
+      "targets": []
+    }
+  ],
+  "geometry430": [
+    {
+      "name": "home",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "classic",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "zen-entry",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "settings",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "board",
+      "overflow": false,
+      "board": {
+        "x": 17,
+        "y": 215.5,
+        "width": 396,
+        "height": 396
+      },
+      "tools": {
+        "x": 20,
+        "y": 667.5,
+        "width": 390,
+        "height": 205
+      },
+      "targets": []
+    }
+  ],
+  "geometry768": [
+    {
+      "name": "home",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "classic",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "zen-entry",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "settings",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "board",
+      "overflow": false,
+      "board": {
+        "x": 29,
+        "y": 243.5,
+        "width": 466,
+        "height": 466
+      },
+      "tools": {
+        "x": 520,
+        "y": 142,
+        "width": 216,
+        "height": 672.90625
+      },
+      "targets": []
+    }
+  ],
+  "geometry1440": [
+    {
+      "name": "home",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "classic",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "zen-entry",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "settings",
+      "overflow": false,
+      "board": null,
+      "tools": null,
+      "targets": []
+    },
+    {
+      "name": "board",
+      "overflow": false,
+      "board": {
+        "x": 253,
+        "y": 243.5,
+        "width": 626,
+        "height": 626
+      },
+      "tools": {
+        "x": 968,
+        "y": 142,
+        "width": 264,
+        "height": 665.109375
+      },
+      "targets": []
+    }
+  ],
+  "offline": {
+    "supported": true,
+    "registrations": 1,
+    "failure": null
+  }
+}

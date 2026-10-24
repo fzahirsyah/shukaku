@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+import {generateSteps,verifyGeneratedSteps} from '/Users/farhan/Documents/Farhan/shukaku/js/engine/generator.js';
+import {drain} from '/Users/farhan/Documents/Farhan/shukaku/js/engine/solver.js';
+import {createSession} from '/Users/farhan/Documents/Farhan/shukaku/js/engine/moves.js';
+import {makeBackup} from '/Users/farhan/Documents/Farhan/shukaku/js/storage/backup.js';
+const dir='/Users/farhan/Documents/Farhan/shukaku/docs/qa/pending-audit',report=JSON.parse(fs.readFileSync(dir+'/generator-results.json','utf8')),puzzles=[],sessions=[];
+for(const row of report.results.filter(r=>r.size===12))for(const item of row.accepted){const prefix=`zen-zen-1-12-${row.difficulty}-`,seed=item.id.slice(prefix.length),result=drain(generateSteps({size:12,difficulty:row.difficulty,seed},{maxWork:4000000,maxNodes:100000}));if(result.status!=='READY')throw Error('Replay failed');const p=result.puzzle;puzzles.push(p);const now=Date.now();sessions.push({...createSession(p,'bulk-'+sessions.length),mode:'zen',separate:false,contentVersion:1,status:'PAUSED',elapsedActiveMs:0,startedAt:now,updatedAt:now});}
+const fixture=makeBackup(puzzles,sessions,[],{theme:'system',reducedMotion:true,sound:false,highContrast:false,selection:'both'});fs.writeFileSync(dir+'/bulk-backup-fixture.json',JSON.stringify(fixture));
+const start=performance.now(),verified=drain(verifyGeneratedSteps(puzzles,{maxWork:6000000,maxNodes:100000,now:()=>performance.now(),maxMs:4000}));const summary={definitions:puzzles.length,backupBytes:Buffer.byteLength(JSON.stringify(fixture)),status:verified.status,accepted:verified.accepted?.length,rejected:verified.rejected,reason:verified.reason,elapsedMs:Math.round(performance.now()-start)};fs.writeFileSync(dir+'/bulk-verification-results.json',JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));

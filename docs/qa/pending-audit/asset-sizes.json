@@ -1,0 +1,162 @@
+{
+  "method": "sum of individually gzip-compressed local application code and assets; not observed transfer or hosting compression",
+  "rawBytes": 321533,
+  "gzipBytes": 108817,
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 978,
+      "gzipBytes": 485
+    },
+    {
+      "path": "js/router.js",
+      "bytes": 490,
+      "gzipBytes": 300
+    },
+    {
+      "path": "js/app.js",
+      "bytes": 28407,
+      "gzipBytes": 7548
+    },
+    {
+      "path": "js/state/timer.js",
+      "bytes": 1826,
+      "gzipBytes": 694
+    },
+    {
+      "path": "js/state/puzzle-service.js",
+      "bytes": 2069,
+      "gzipBytes": 797
+    },
+    {
+      "path": "js/state/use-game.js",
+      "bytes": 38254,
+      "gzipBytes": 10515
+    },
+    {
+      "path": "js/storage/backup.js",
+      "bytes": 2136,
+      "gzipBytes": 864
+    },
+    {
+      "path": "js/storage/indexeddb.js",
+      "bytes": 9836,
+      "gzipBytes": 3032
+    },
+    {
+      "path": "js/storage/schema.js",
+      "bytes": 4591,
+      "gzipBytes": 1659
+    },
+    {
+      "path": "js/components/keyboard-guide.js",
+      "bytes": 1185,
+      "gzipBytes": 469
+    },
+    {
+      "path": "js/components/puzzle-board.js",
+      "bytes": 10057,
+      "gzipBytes": 3212
+    },
+    {
+      "path": "js/components/icon.js",
+      "bytes": 1410,
+      "gzipBytes": 798
+    },
+    {
+      "path": "js/workers/puzzle-worker.js",
+      "bytes": 1954,
+      "gzipBytes": 830
+    },
+    {
+      "path": "js/data/classic-levels.js",
+      "bytes": 5290,
+      "gzipBytes": 607
+    },
+    {
+      "path": "js/data/fixtures.js",
+      "bytes": 1747,
+      "gzipBytes": 793
+    },
+    {
+      "path": "js/data/zen-fallback-levels.js",
+      "bytes": 213,
+      "gzipBytes": 173
+    },
+    {
+      "path": "js/engine/difficulty.js",
+      "bytes": 2276,
+      "gzipBytes": 987
+    },
+    {
+      "path": "js/engine/moves.js",
+      "bytes": 3129,
+      "gzipBytes": 1083
+    },
+    {
+      "path": "js/engine/validator.js",
+      "bytes": 3500,
+      "gzipBytes": 1304
+    },
+    {
+      "path": "js/engine/hint-engine.js",
+      "bytes": 5270,
+      "gzipBytes": 2099
+    },
+    {
+      "path": "js/engine/solver.js",
+      "bytes": 4794,
+      "gzipBytes": 1694
+    },
+    {
+      "path": "js/engine/seeded-random.js",
+      "bytes": 432,
+      "gzipBytes": 291
+    },
+    {
+      "path": "js/engine/generator.js",
+      "bytes": 5789,
+      "gzipBytes": 2158
+    },
+    {
+      "path": "css/desktop.css",
+      "bytes": 4910,
+      "gzipBytes": 1574
+    },
+    {
+      "path": "css/tokens.css",
+      "bytes": 972,
+      "gzipBytes": 506
+    },
+    {
+      "path": "css/motion.css",
+      "bytes": 765,
+      "gzipBytes": 314
+    },
+    {
+      "path": "css/base.css",
+      "bytes": 2781,
+      "gzipBytes": 1039
+    },
+    {
+      "path": "css/mobile.css",
+      "bytes": 15261,
+      "gzipBytes": 3672
+    },
+    {
+      "path": "assets/sakura-branch.svg",
+      "bytes": 1375,
+      "gzipBytes": 583
+    },
+    {
+      "path": "assets/favicon.svg",
+      "bytes": 204,
+      "gzipBytes": 177
+    },
+    {
+      "path": "vendor/vue.global.prod.js",
+      "bytes": 159632,
+      "gzipBytes": 58560
+    }
+  ]
+}

@@ -42,8 +42,8 @@ function* certify(candidate,budget){
   if(metrics.logicScore<range.min||metrics.logicScore>range.max)return null;
   return {...candidate,uniqueVerified:true,logicScore:metrics.logicScore,logicMetrics:metrics,solution:proof.solution};
 }
-export function* generateSteps({size=5,difficulty='gentle',seed,maxAttempts=48,exclude=[]}={},options={}){
-  if(!parameters(size,difficulty,seed)||!Number.isInteger(maxAttempts)||maxAttempts<1||maxAttempts>64||!Array.isArray(exclude)||exclude.length>2000)return{status:'UNAVAILABLE',reason:'INVALID_PARAMETERS'};
+export function* generateSteps({size=5,difficulty='gentle',seed,maxAttempts=2048,exclude=[]}={},options={}){
+  if(!parameters(size,difficulty,seed)||!Number.isInteger(maxAttempts)||maxAttempts<1||maxAttempts>4096||!Array.isArray(exclude)||exclude.length>2000)return{status:'UNAVAILABLE',reason:'INVALID_PARAMETERS'};
   const budget=searchBudget(options),seen=new Set(exclude);
   try{
     for(let attempt=0;attempt<maxAttempts;attempt++){

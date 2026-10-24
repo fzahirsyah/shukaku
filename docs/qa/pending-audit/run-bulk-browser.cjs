@@ -1,0 +1,25 @@
+const {chromium}=require('/Users/farhan/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core');
+const http=require('http'),fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const root='/Users/farhan/Documents/Farhan/shukaku',out=path.join(root,'docs/qa/pending-audit'),mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml'};
+const results={checks:[],failures:[],screens:[],errors:[],network:[]};
+async function check(name,fn){try{const detail=await fn();results.checks.push({name,detail});console.log('PASS',name,JSON.stringify(detail));}catch(error){results.failures.push({name,error:error.message});console.log('FAIL',name,error.message);}fs.writeFileSync(path.join(out,'bulk-browser-results.json'),JSON.stringify(results,null,2));}
+(async()=>{const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':new URL(req.url,'http://localhost').pathname));if(!file.startsWith(root+'/'))return res.writeHead(403).end();fs.readFile(file,(err,data)=>{if(err)return res.writeHead(404).end();res.setHeader('Content-Type',mime[path.extname(file)]||'text/plain');res.end(data);});});await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});let browser;
+try{browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',args:['--no-first-run','--disable-background-networking']});const base=`http://127.0.0.1:${server.address().port}`;
+const ctx=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce',acceptDownloads:true});const page=await ctx.newPage();page.setDefaultTimeout(12000);page.on('pageerror',e=>results.errors.push(e.message));page.on('request',r=>{if(!r.url().startsWith(base))results.network.push(r.url());});
+const open=async(url)=>{await page.goto(base+url);await page.locator('main h1').waitFor();};
+const saved=async()=>page.waitForFunction(()=>document.querySelector('.save-status')?.textContent==='Saved on this device');
+const data=async(p=page)=>p.evaluate(async()=>{const {openDatabase,Repository}=await import('/js/storage/indexeddb.js');const repo=new Repository(await openDatabase(),{channel:false});const all=await repo.snapshot();repo.close();return all;});
+const snap=async(name)=>{const file=name+'.png';await page.screenshot({path:path.join(out,file),fullPage:false});results.screens.push(file);};
+const resume=async()=>{if(await page.getByRole('dialog').count())await page.getByRole('button',{name:/^(Resume|Back to puzzle)$/}).click();await page.getByRole('dialog').waitFor({state:'hidden'});};
+
+await check('valid 300-puzzle backup imports on first attempt',async()=>{
+ const fixture=JSON.parse(fs.readFileSync(path.join(out,'bulk-backup-fixture.json'),'utf8'));await open('/#/settings');await page.locator('input[type=file]').setInputFiles({name:'valid-history.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixture))});await page.waitForFunction(()=>document.querySelector('[role=dialog]')||document.querySelector('.notice'));
+ const outcome={dialogs:await page.getByRole('dialog').count(),error:await page.locator('.notice').allTextContents(),storedSessions:(await data()).sessions.length};results.bulkImport=outcome;await snap('390-bulk-import-rejected');assert.equal(outcome.dialogs,1,'Valid backup rejected: '+outcome.error.join(' '));return outcome;
+});
+await check('valid 1000-puzzle local history restores without recovery errors',async()=>{
+ const fixture=JSON.parse(fs.readFileSync(path.join(out,'bulk-1000-backup-fixture.json'),'utf8')),fresh=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'}),p=await fresh.newPage();await p.goto(base+'/');await p.locator('main h1').waitFor();
+ await p.evaluate(async fixture=>{const{openDatabase,Repository}=await import('/js/storage/indexeddb.js');const {validateBackup}=await import('/js/storage/backup.js');const checked=validateBackup(fixture,fixture.puzzles);const repo=new Repository(await openDatabase(),{channel:false});await repo.importData(checked,'replace');repo.close();},fixture);
+ await p.reload();await p.locator('main h1').waitFor();const outcome={notice:await p.locator('.storage-notice').allTextContents(),storedSessions:(await data(p)).sessions.length,continueHref:await p.locator('.continue-card').getAttribute('href')};results.bulkRestore=outcome;await p.screenshot({path:path.join(out,'390-bulk-restore-recovery.png'),fullPage:false});results.screens.push('390-bulk-restore-recovery.png');await fresh.close();assert.equal(outcome.notice.length,0,'Valid stored history is marked unverified: '+outcome.notice.join(' '));return outcome;
+});
+await ctx.close();fs.writeFileSync(path.join(out,'bulk-browser-results.json'),JSON.stringify(results,null,2));console.log('SUMMARY',JSON.stringify(results));
+}finally{await browser?.close();server.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

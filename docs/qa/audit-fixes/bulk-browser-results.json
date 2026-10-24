@@ -1,0 +1,52 @@
+{
+  "checks": [
+    {
+      "name": "valid 300-puzzle backup imports on first attempt",
+      "detail": {
+        "dialogs": 1,
+        "error": [],
+        "storedSessions": 300
+      }
+    },
+    {
+      "name": "valid 1000-puzzle local history restores without recovery errors",
+      "detail": {
+        "notice": [],
+        "storedSessions": 1000,
+        "continueHref": "#/play/zen/bulk-999"
+      }
+    },
+    {
+      "name": "valid 1000-puzzle backup verifies and imports in one user action",
+      "detail": {
+        "sessions": 1000
+      }
+    },
+    {
+      "name": "cancelled restore keeps pending records, retry completes without corruption",
+      "detail": true
+    },
+    {
+      "name": "reset cannot be repopulated by a late verification response",
+      "detail": true
+    }
+  ],
+  "failures": [],
+  "screens": [
+    "390-bulk-import-preview.png",
+    "390-bulk-restored.png",
+    "390-verification-pending.png"
+  ],
+  "errors": [],
+  "network": [],
+  "bulkImport": {
+    "dialogs": 1,
+    "error": [],
+    "storedSessions": 300
+  },
+  "bulkRestore": {
+    "notice": [],
+    "storedSessions": 1000,
+    "continueHref": "#/play/zen/bulk-999"
+  }
+}
