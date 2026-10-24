@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "71 engine, storage, backup and timer checks passed",
+    "Move/history reload, paused restore, active timer and atomic completion passed",
+    "Replay records, Home Continue and real statistics passed",
+    "Persistent preferences and portable JSON backup passed",
+    "Invalid backup rejection and merge idempotency passed",
+    "Cross-tab lock, conflict sheet and separate attempt passed",
+    "Confirmed replace import passed",
+    "Two-stage confirmed reset passed",
+    "Twelve phone layout captures passed without horizontal overflow",
+    "Zen completion, no timing and persisted fallback resume passed",
+    "Storage-disabled temporary play with truthful warning passed"
+  ],
+  "errors": []
+}

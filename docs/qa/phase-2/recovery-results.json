@@ -1,0 +1,8 @@
+{
+  "checks": [
+    "Quota-failed move preserved in memory/export; leave guard and successful retry passed",
+    "Corrupted session skipped, raw recovery exported and clean attempt saved without overwriting corruption",
+    "Retry rejected stale revision without overwriting newer snapshot"
+  ],
+  "errors": []
+}

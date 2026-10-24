@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "72 engine, storage, solver, hint and worker checks passed, including 462 independent small-board comparisons",
+    "Nudge/Explain preserve board; double-click Reveal commits once, is undoable and persists hint usage across reload",
+    "Check board proves consistency; contradictory placement is explained/highlighted and never overwritten or counted as a hint",
+    "Forced reveals complete a game normally; assisted result persists and stays out of no-hint personal bests",
+    "Hint sheet and non-color board highlight fit 320/360/390/430 phone widths",
+    "Worker timeout/budget, unsupported worker and late cancelled response leave board and hint count unchanged"
+  ],
+  "errors": []
+}
